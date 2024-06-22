@@ -1,0 +1,26 @@
+# Maven artifacts
+target/
+
+# IDE Configuration Files
+.idea/
+*.iml
+
+# Build output and logs
+*.log
+out/
+build/
+
+# Other compiled code
+*.class
+*.o
+
+# Local settings
+.project
+.classpath
+.settings/
+
+#allure rports
+allure-results
+allure-report
+
+.DS_Store
