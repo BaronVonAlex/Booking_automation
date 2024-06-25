@@ -1,15 +1,14 @@
 package ge.tbc.tbcacademy.booking;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import ge.tbc.tbcacademy.config.ConfigTests;
 import ge.tbc.tbcacademy.data.TripDataProvider;
 import ge.tbc.tbcacademy.steps.funcitonal.StaysPageSteps;
 import ge.tbc.tbcacademy.steps.common.HelperSteps;
 import ge.tbc.tbcacademy.steps.common.PopUpSteps;
 import ge.tbc.tbcacademy.utils.Util;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
+import io.qameta.allure.*;
 import jdk.jfr.Description;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -29,15 +28,17 @@ public class SearchTests extends ConfigTests {
     @BeforeMethod
     public void dismissPopups() {
         HelperSteps.openBookingWebPage();
+        Selenide.clearBrowserCookies();
         Configuration.timeout = 10000;
         if (popUpSteps.geniusPopUpIsDisplayed()) {
             popUpSteps.dismissGeniusSaveUpPopUp();
         }
     }
 
-    @Description("")
-    @Feature("")
-    @Story("")
+    @Description("choose destination in the search bar and check sugestion")
+    @Feature("Search bar functionality")
+    @Story("input text in destination and choose completion form autosuggest")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(groups = "Search Bar Components", dataProvider = "destinationProvider", dataProviderClass = TripDataProvider.class)
     public void chooseDestination(String dest) {
         staysSteps.focusOnDestinationInput()
@@ -46,9 +47,10 @@ public class SearchTests extends ConfigTests {
                 .selectDestinationFromDropdown(dest);
     }
 
-    @Description("")
-    @Feature("")
-    @Story("")
+    @Description("Add Adults into configs")
+    @Feature("Search bar functionality")
+    @Story("Add number of adults that that will be staying")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(groups = "Search Bar Components", dataProvider = "adultsCountProvider", dataProviderClass = TripDataProvider.class)
     public void addingAdultsTests(int adults) {
         int currentNumberOfAdults = staysSteps.openOccupancyConfiguration()
@@ -62,9 +64,10 @@ public class SearchTests extends ConfigTests {
 
     }
 
-    @Description("")
-    @Feature("")
-    @Story("")
+    @Description("Add children ")
+    @Feature("Search bar functionality")
+    @Story("add number of children in the configurations")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(groups = "Search Bar Components", dataProvider = "childCountProvider", dataProviderClass = TripDataProvider.class)
     public void addChildrenTest(int children, int age) {
         staysSteps.openOccupancyConfiguration()
@@ -80,9 +83,10 @@ public class SearchTests extends ConfigTests {
 
     }
 
-    @Description("")
-    @Feature("")
-    @Story("")
+    @Description("Choose Dates from calendar date picker")
+    @Feature("Search bar functionality")
+    @Story("Choose trip start and end date from calendar")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(groups = "Search Bar Components", dataProvider = "datesProvider", dataProviderClass = TripDataProvider.class)
     public void chooseDatesTests(LocalDate startDate, LocalDate endDate) {
 
@@ -103,9 +107,10 @@ public class SearchTests extends ConfigTests {
 
     }
 
-    @Description("")
-    @Feature("")
-    @Story("")
+    @Description("Choose desired number of rooms")
+    @Feature("Search bar functionality")
+    @Story("Choose desired number of rooms form the occupancy configurations")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(groups = "Search Bar Components")
             public void chooseRoomNumber() {
         int n = 4;
@@ -115,9 +120,10 @@ public class SearchTests extends ConfigTests {
         Assert.assertEquals(staysSteps.getRoomCount(), n, "Rooms Dont Match");
         staysSteps.submitOccupancyConfigurations();
     }
-    @Description("")
-    @Feature("")
-    @Story("")
+    @Description("on stays page enter parameters and searchfor stays")
+    @Feature("Search bar functionality")
+    @Story("On stays page enter location, date, and number of guests and search for results")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(dataProvider = "searchInfoProvider", dataProviderClass = TripDataProvider.class)
     public void searchScenarioTest(String dest, LocalDate startDate, int tripDuration, int adults, int rooms, int children) {
         LocalDate endDate = startDate.plusDays(tripDuration);

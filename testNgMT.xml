@@ -4,9 +4,9 @@
     <test name="Regression">
         <classes>
             <class name="ge.tbc.tbcacademy.booking.SearchTests">
-                <methods>
-                    <include name="chooseDatesTests"/>
-                </methods>
+<!--                <methods>-->
+<!--                    <include name="chooseRoomNumber"/>-->
+<!--                </methods>-->
             </class>
         </classes>
     </test>
