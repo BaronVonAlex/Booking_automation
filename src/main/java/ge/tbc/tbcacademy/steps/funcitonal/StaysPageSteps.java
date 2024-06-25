@@ -2,6 +2,7 @@ package ge.tbc.tbcacademy.steps.funcitonal;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ex.ElementShould;
+import ge.tbc.tbcacademy.data.Constants;
 import ge.tbc.tbcacademy.data.SearchConstants;
 import ge.tbc.tbcacademy.pages.StaysPage;
 import ge.tbc.tbcacademy.utils.Util;
@@ -11,8 +12,6 @@ import java.time.LocalDate;
 import java.util.NoSuchElementException;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.element;
 
 public class StaysPageSteps {
     StaysPage staysPage = new StaysPage();
@@ -160,7 +159,7 @@ public class StaysPageSteps {
     @Step("Increase number of staying children")
     public StaysPageSteps addChild() {
         if (!staysPage.addChild.isDisplayed() || !staysPage.addChild.isEnabled()) {
-            throw new RuntimeException("You have reached maximum number of children allowed");
+            throw new RuntimeException(SearchConstants.TOO_MANY_CHILDREN);
         }
         staysPage.addChild.shouldBe(clickable).click();
         return this;
@@ -168,7 +167,7 @@ public class StaysPageSteps {
     @Step("Select child's age")
     public StaysPageSteps chooseChildAge(int age) {
         if (age >= 18) {
-            throw new RuntimeException("This is no longer child");
+            throw new RuntimeException(SearchConstants.NO_LONGER_CHILD);
         }
         staysPage.childAgeDropdown.shouldBe(clickable).click();
         staysPage.childAgeDropdown.selectOptionContainingText(String.valueOf(age));
@@ -187,9 +186,7 @@ public class StaysPageSteps {
     }
     @Step("Select Pet slider In Occupancy configuration")
     public StaysPageSteps addPet() {
-        /** Sometimes is not displayed **/
         staysPage.withPets.shouldBe(clickable).click();
-
         return this;
     }
     @Step("Select Desired Number Of Rooms")
@@ -198,7 +195,7 @@ public class StaysPageSteps {
             staysPage.addRoom.shouldBe(clickable).click();
         }
         if (Util.parseStringToInt(staysPage.roomCount.getText()) > n) {
-            throw new RuntimeException("Too Many rooms");
+            throw new RuntimeException(SearchConstants.TOO_MANY_ROOMS);
         }
         return this;
     }
@@ -211,7 +208,7 @@ public class StaysPageSteps {
         if (staysPage.removeRoom.isEnabled()) {
             staysPage.removeRoom.shouldBe(clickable).click();
         } else {
-            throw new RuntimeException("Can No Longer Remove Rooms Current VaLue Is " + staysPage.roomCount.getText());
+            throw new RuntimeException(SearchConstants.NO_ROOM_TO_REMOVE + staysPage.roomCount.getText());
         }
 
         return this;
@@ -230,7 +227,7 @@ public class StaysPageSteps {
     @Step("Check that all results are on selected location")
     public StaysPageSteps offerLocationCheck(String dest) {
         staysPage.offerLocations.shouldHave(CollectionCondition.allMatch(
-                "All are locared to the same city",
+                "All are located to the same city",
                 e -> {
                     return e.getText().contains(dest);
                 }
@@ -240,7 +237,7 @@ public class StaysPageSteps {
     @Step("Check that all results are fulfilling occupancy configurations")
     public StaysPageSteps offersSatisfyConfigs(int adults, int children, int days) {
         staysPage.occupancyConfigs.shouldHave(CollectionCondition.allMatch(
-                "The comfigns are set",
+                "Occupancy configs are set",
                 e -> {
                     return e.getText().contains(Util.getOccupancyString(adults,children,days));
                 }

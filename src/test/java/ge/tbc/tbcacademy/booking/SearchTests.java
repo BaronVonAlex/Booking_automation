@@ -4,14 +4,16 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import ge.tbc.tbcacademy.config.ConfigTests;
 import ge.tbc.tbcacademy.data.TripDataProvider;
-import ge.tbc.tbcacademy.steps.funcitonal.StaysPageSteps;
 import ge.tbc.tbcacademy.steps.common.HelperSteps;
 import ge.tbc.tbcacademy.steps.common.PopUpSteps;
+import ge.tbc.tbcacademy.steps.funcitonal.StaysPageSteps;
 import ge.tbc.tbcacademy.utils.Util;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDate;
