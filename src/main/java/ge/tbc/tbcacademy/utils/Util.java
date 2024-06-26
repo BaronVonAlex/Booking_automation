@@ -1,5 +1,7 @@
 package ge.tbc.tbcacademy.utils;
 
+import org.openqa.selenium.support.Color;
+
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
@@ -61,6 +63,45 @@ public class Util {
                 return String.format("%d nights, %d adults, %d child", days, adults, children);
             }
 
+        }
+    }
+
+
+    /**
+     * Calculates the relative luminance of a color.
+     *
+     * @param color The color.
+     * @return The relative luminance of the color.
+     */
+    private static double calculateRelativeLuminance(Color color) {
+        double sRGB = color.getColor().getRed();
+        return sRGB <= 0.03928 ? sRGB / 12.92 : Math.pow((sRGB + 0.055) / 1.055, 2.4);
+    }
+
+    /**
+     * Calculates the contrast ratio between two colors.
+     *
+     * @param color1 The first color.
+     * @param color2 The second color.
+     * @return The contrast ratio between the two colors.
+     */
+    public static double calculateContrastRatio(Color color1, Color color2) {
+        double L1 = calculateRelativeLuminance(color1);
+        double L2 = calculateRelativeLuminance(color2);
+        return (Math.max(L1, L2) + 0.05) / (Math.min(L1, L2) + 0.05);
+    }
+
+    /**
+     * Checks if the contrast ratio between two colors meets WCAG guidelines.
+     */
+    public static boolean meetsWCAGGuidelines(Color color1, Color color2, String level) {
+        double ratio = calculateContrastRatio(color1, color2);
+        if (level.equalsIgnoreCase("AA")) {
+            return ratio >= 4.5;
+        } else if (level.equalsIgnoreCase("AAA")) {
+            return ratio >= 7.0;
+        } else {
+            throw new IllegalArgumentException("Invalid WCAG level: " + level);
         }
     }
 }
