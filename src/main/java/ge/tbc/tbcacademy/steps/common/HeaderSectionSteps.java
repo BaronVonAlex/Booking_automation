@@ -11,4 +11,9 @@ public class HeaderSectionSteps extends HelperSteps<HeaderSectionSteps> {
         headerSection.registerBtn.click();
         return this;
     }
+    @Step("Click on Login button.")
+    public HeaderSectionSteps clickSingInButton() {
+        headerSection.loginBtn.click();
+        return this;
+    }
 }
