@@ -1,5 +1,6 @@
-package ge.tbc.tbcacademy.data;
+package ge.tbc.tbcacademy.data.dataproviders;
 
+import com.github.javafaker.Faker;
 import org.testng.annotations.DataProvider;
 
 import java.time.LocalDate;
@@ -7,10 +8,12 @@ import java.util.Random;
 
 public class TripDataProvider {
     Random rand = new Random();
+    Faker faker = new Faker();
+
     @DataProvider
     public Object[][] searchInfoProvider() {
         LocalDate startDate = LocalDate.now();
-        //String dest, LocalDate startDate,int tripDuration,int adults,int rooms,int children
+
         return new Object[][]{
                 {"Astana",startDate,9,2,2,3},
                 {"Batumi",startDate,7,2,2,1},

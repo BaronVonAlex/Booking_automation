@@ -1,12 +1,9 @@
 package ge.tbc.tbcacademy.booking;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import ge.tbc.tbcacademy.config.ConfigTests;
-import ge.tbc.tbcacademy.data.TripDataProvider;
-import ge.tbc.tbcacademy.steps.common.HelperSteps;
-import ge.tbc.tbcacademy.steps.common.PopUpSteps;
-import ge.tbc.tbcacademy.steps.funcitonal.StaysPageSteps;
+import ge.tbc.tbcacademy.data.dataproviders.TripDataProvider;
+import ge.tbc.tbcacademy.steps.StaysPageSteps;
 import ge.tbc.tbcacademy.utils.Util;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
@@ -23,18 +20,13 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 @Epic("Functional Tests")
 public class SearchTests extends ConfigTests {
-    PopUpSteps popUpSteps = new PopUpSteps();
     StaysPageSteps staysSteps = new StaysPageSteps();
     SoftAssert softAssert = new SoftAssert();
 
     @BeforeMethod
     public void dismissPopups() {
-        HelperSteps.openBookingWebPage();
-        Selenide.clearBrowserCookies();
-        Configuration.timeout = 10000;
-        if (popUpSteps.geniusPopUpIsDisplayed()) {
-            popUpSteps.dismissGeniusSaveUpPopUp();
-        }
+        staysSteps.openBookingWebPage()
+                        .closeSignInPopUp();
     }
 
     @Description("choose destination in the search bar and check sugestion")

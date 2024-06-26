@@ -64,6 +64,7 @@ public class StaysPage {
     public SelenideElement findInDestDropDown(String destination){
         return  destinationDropdown.find(Condition.text(destination));
     }
+
     public SelenideElement getDateFormCalendar(String date, String month, String year) {
         return $("[aria-label='"+ Util.getCalendarFormatDate(date,month,year)+"']");
     }

@@ -1,10 +1,10 @@
-package ge.tbc.tbcacademy.steps.funcitonal;
+package ge.tbc.tbcacademy.steps;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ex.ElementShould;
-import ge.tbc.tbcacademy.data.Constants;
-import ge.tbc.tbcacademy.data.SearchConstants;
+import ge.tbc.tbcacademy.data.constants.SearchConstants;
 import ge.tbc.tbcacademy.pages.StaysPage;
+import ge.tbc.tbcacademy.steps.common.HelperSteps;
 import ge.tbc.tbcacademy.utils.Util;
 import io.qameta.allure.Step;
 
@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 
 import static com.codeborne.selenide.Condition.*;
 
-public class StaysPageSteps {
+public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
     StaysPage staysPage = new StaysPage();
 
     @Step("Hover on a field where destination is inputted")
@@ -31,14 +31,14 @@ public class StaysPageSteps {
         return this;
     }
 
-    @Step("Input destination")
+    @Step("Input destination {0}")
     public StaysPageSteps writeDestination(String dest) {
         staysPage.destinationInput.sendKeys(dest);
 
         return this;
     }
 
-    @Step("select destination from autocomplete/autocorrect dropdown")
+    @Step("select destination from autocomplete/autocorrect dropdown {0}")
     public StaysPageSteps selectDestinationFromDropdown(String dest) {
         staysPage.findInDestDropDown(dest).shouldBe(clickable).click();
         return this;
@@ -60,7 +60,7 @@ public class StaysPageSteps {
         return this;
     }
 
-    @Step("Choose Start date")
+    @Step("Choose Start date {0} {1} {2}")
     public StaysPageSteps chooseStartDate(String day, String month, String year) {
         while ((!staysPage.getDateFormCalendar(day, month, year).isDisplayed())
                 && staysPage.nextMonthArrowBtn.isDisplayed()) {
@@ -76,7 +76,7 @@ public class StaysPageSteps {
         return this;
     }
 
-    @Step("Choose end date")
+    @Step("Choose end date {0} {1} {2}")
     public StaysPageSteps chooseEndDate(String day, String month, String year) {
         while (!staysPage.getDateFormCalendar(day, month, year).isDisplayed()
                 && staysPage.nextMonthArrowBtn.isDisplayed()) {
@@ -98,14 +98,14 @@ public class StaysPageSteps {
         staysPage.flexibleDatesContainer.scrollIntoView(false);
         return this;
     }
-    @Step("Check if Start date was correctly saved")
+    @Step("Check if Start date was correctly saved {0}")
     public StaysPageSteps checkStartDateIsSet(LocalDate start) {
         staysPage.startDate.shouldHave(partialText(Util.getShortMonthFromDate(start)));
         staysPage.startDate.shouldHave(partialText(Util.getDayOfMonth(start)));
 
         return this;
     }
-    @Step("Check that end date was correctly saved")
+    @Step("Check that end date was correctly saved {0}")
     public StaysPageSteps checkEndDateIsSet(LocalDate end) {
         staysPage.endDate.shouldHave(partialText(Util.getDayOfMonth(end)));
         staysPage.endDate.shouldHave(partialText(Util.getDayOfMonth(end)));
@@ -121,7 +121,7 @@ public class StaysPageSteps {
         staysPage.occupancyPopup.shouldBe(visible);
         return this;
     }
-    @Step("Select number of staying Adults")
+    @Step("Select number of staying Adults {0}")
     public StaysPageSteps setNumberOfAdultsTo(int numberOfAdults) {
         int adults = Util.parseStringToInt(staysPage.adultsCount.getText());
         while ((adults != numberOfAdults)) {
@@ -164,7 +164,7 @@ public class StaysPageSteps {
         staysPage.addChild.shouldBe(clickable).click();
         return this;
     }
-    @Step("Select child's age")
+    @Step("Select child's age {0}")
     public StaysPageSteps chooseChildAge(int age) {
         if (age >= 18) {
             throw new RuntimeException(SearchConstants.NO_LONGER_CHILD);
@@ -189,7 +189,7 @@ public class StaysPageSteps {
         staysPage.withPets.shouldBe(clickable).click();
         return this;
     }
-    @Step("Select Desired Number Of Rooms")
+    @Step("Select Desired Number Of Rooms {0}")
     public StaysPageSteps setRoomsTo(int n) {
         while (staysPage.addRoom.isEnabled() && !staysPage.roomCount.getText().equals(String.valueOf(n))) {
             staysPage.addRoom.shouldBe(clickable).click();
@@ -215,7 +215,7 @@ public class StaysPageSteps {
     }
     @Step("Click on search button")
     public StaysPageSteps clickOnSearchButton() {
-        staysPage.searchButton.shouldBe(clickable).click();
+        staysPage.searchButton.scrollTo().shouldBe(clickable).click();
         return this;
     }
     @Step("Make Sure search results are displayed")
@@ -224,7 +224,7 @@ public class StaysPageSteps {
         return this;
     }
 
-    @Step("Check that all results are on selected location")
+    @Step("Check that all results are on selected location {0}")
     public StaysPageSteps offerLocationCheck(String dest) {
         staysPage.offerLocations.shouldHave(CollectionCondition.allMatch(
                 "All are located to the same city",
@@ -234,7 +234,7 @@ public class StaysPageSteps {
         ));
         return this;
     }
-    @Step("Check that all results are fulfilling occupancy configurations")
+    @Step("Check that all results are fulfilling occupancy configurations {0} {1} {2}")
     public StaysPageSteps offersSatisfyConfigs(int adults, int children, int days) {
         staysPage.occupancyConfigs.shouldHave(CollectionCondition.allMatch(
                 "Occupancy configs are set",
