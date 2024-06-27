@@ -37,7 +37,6 @@ public class UITests extends ConfigTests {
     @Test(description = "Validate UI elements on NavBar", priority = 1)
     public void headerUITests() {
         homePageSteps.closeSignInPopUp();
-
         headerSectionSteps
                 .validateElementValue(headerSection.headerLogo, ATTRIBUTE_ARIA_LABEL, BOOKING_ATTR_VAL)
                 .validateElementValue(headerSection.changeCurrencyBtn, ATTRIBUTE_ARIA_LABEL, CURRENCY_BTN_ATR_VAL)
@@ -58,15 +57,27 @@ public class UITests extends ConfigTests {
     @Test(description = "Validate UI elements on MainPage", priority = 2)
     public void mainHomePage() {
         homePageSteps
-                .validateElementValue(homePage.backgroundImage, ATTRIBUTE_SRC, BACKGROUND_IMG_SRC_VAL)
-                .validateElementValue(homePage.inputField, ATTRIBUTE_PLACEHOLDER, HOME_INPUT_FIELD_ATR_VAL)
-                .validateIfElementExists(homePage.searchSubmitBtn)
-                .validateElementColor(homePage.searchSubmitBtn, SEARCH_BTN_COLOR_VAL)
-                .validateIfElementExists(homePage.instantDiscountRegisterBtn)
-                .validateElementColor(homePage.instantDiscountRegisterBtn, INSTANT_DISCOUNT_LOG_AUTH_BTN_COLOR_VAL)
-                .validateIfElementExists(homePage.instantDiscountSignInBtn)
-                .validateElementColor(homePage.instantDiscountSignInBtn, INSTANT_DISCOUNT_LOG_AUTH_BTN_COLOR_VAL)
-                .validateIfElementExists(homePage.exploreBtn);
+                // Validate element values
+                .validateElementValue(homePage.backgroundImage, ATTRIBUTE_SRC, BACKGROUND_IMG_SRC_VAL)  // Background image source
+                .validateElementValue(homePage.inputField, ATTRIBUTE_PLACEHOLDER, HOME_INPUT_FIELD_ATR_VAL)  // Input field placeholder
+
+                // Validate element text
+                .validateElementText(homePage.dateInputFieldText, CHECK_IN_TXT_VAL)  // Date input field text
+                .validateElementText(homePage.searchSubmitBtnText, SEARCH_TXT_VAL)  // Search button text
+                .validateElementText(homePage.registerBtnText, REGISTER_TXT_VAL)  // Register button text
+                .validateElementText(homePage.signInBtnText, SIGN_IN_TXT_VAL)  // Sign-in button text
+
+                // Validate element existence
+                .validateIfElementExists(homePage.searchSubmitBtn)  // Search submit button exists
+                .validateIfElementExists(homePage.instantDiscountRegisterBtn)  // Register button exists
+                .validateIfElementExists(homePage.instantDiscountSignInBtn)  // Sign-in button exists
+                .validateIfElementExists(homePage.exploreBtn)  // Explore button exists
+
+                // Validate element color
+                .validateElementColor(homePage.searchSubmitBtn, SEARCH_BTN_COLOR_VAL)  // Search button color
+                .validateElementColor(homePage.instantDiscountRegisterBtn, INSTANT_DISCOUNT_LOG_AUTH_BTN_COLOR_VAL)  // Register button color
+                .validateElementColor(homePage.instantDiscountSignInBtn, INSTANT_DISCOUNT_LOG_AUTH_BTN_COLOR_VAL);  // Sign-in button color
+
     }
 
     @Severity(SeverityLevel.MINOR)

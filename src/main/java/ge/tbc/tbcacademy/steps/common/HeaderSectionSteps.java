@@ -6,6 +6,7 @@ import io.qameta.allure.Step;
 
 public class HeaderSectionSteps extends HelperSteps<HeaderSectionSteps> {
     HeaderSection headerSection = new HeaderSection();
+
     @Step("Click on Register button.")
     public HeaderSectionSteps clickOnRegisterBtn() {
         headerSection.registerBtn.click();

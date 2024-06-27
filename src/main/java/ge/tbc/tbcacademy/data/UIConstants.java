@@ -20,7 +20,11 @@ public class UIConstants {
             BACKGROUND_IMG_SRC_VAL = "https://r-xx.bstatic.com/xdata/images/xphoto/2880x868/346457038.jpeg?k=7cac75d50b046a991ab7993e9cac89d451d4cc371f108d0fe89d84ba1fc85f19&o=",
             HOME_INPUT_FIELD_ATR_VAL = "Where are you going?",
             SEARCH_BTN_COLOR_VAL = "rgba(0, 0, 0, 0)",
-            INSTANT_DISCOUNT_LOG_AUTH_BTN_COLOR_VAL = "rgba(255, 255, 255, 1)";
+            INSTANT_DISCOUNT_LOG_AUTH_BTN_COLOR_VAL = "rgba(255, 255, 255, 1)",
+            CHECK_IN_TXT_VAL = "Check-in Date",
+            SEARCH_TXT_VAL = "Search",
+            REGISTER_TXT_VAL = "Register",
+            SIGN_IN_TXT_VAL = "Sign in";
 
 
 }

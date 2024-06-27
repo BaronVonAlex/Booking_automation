@@ -3,7 +3,7 @@ package ge.tbc.tbcacademy.data;
 public class Constants {
 
     /**
-     *  Links
+     * Links
      */
     public static final String BOOKING_URL = "https://www.booking.com/";
 
