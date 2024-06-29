@@ -23,4 +23,7 @@ public class JSScripts {
 
                     deleteElementIfAppears('.f0fbe41bfe.b290b28eaf');\s
                     """;
+
+    public static final String
+            AXE_RUNNER_SCRIPT = "var callback = arguments[arguments.length - 1]; axe.run().then(results => callback(results));";
 }

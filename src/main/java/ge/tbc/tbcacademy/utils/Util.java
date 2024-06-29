@@ -1,12 +1,19 @@
 package ge.tbc.tbcacademy.utils;
 
 import com.codeborne.selenide.SelenideElement;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.Color;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
-import java.util.Locale;
+import java.util.*;
 
 import static com.codeborne.selenide.Selenide.webdriver;
 
@@ -132,5 +139,43 @@ public class Util {
         return (String) js.executeScript(
                 "return window.getComputedStyle(arguments[0], arguments[1]).getPropertyValue(arguments[2]);",
                 element, "::before", "background-color");
+    }
+
+    /**
+     * Generates an HTML accessibility report using the Axe-core analysis results.
+     *
+     * @param axeResults The data containing the accessibility violations.
+     * @throws IOException If an error occurs during report generation.
+     */
+    public static void generateReport(Map<String, Object> axeResults) throws IOException {
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_32);
+        cfg.setClassForTemplateLoading(Util.class, "/");
+        Template template = cfg.getTemplate("accessibility_report.ftl");
+
+        // Extract Summary Information
+        int violationCount = ((List<Map<String, Object>>) axeResults.get("violations")).size();
+        int totalNodes = ((List<Map<String, Object>>) axeResults.get("violations")).stream()
+                .mapToInt(v -> ((List<Map<String, Object>>) v.get("nodes")).size())
+                .sum();
+
+        // Prepare data for the template
+        Map<String, Object> templateData = new HashMap<>();
+        templateData.put("axeResults", axeResults);
+        templateData.put("violationCount", violationCount);
+        templateData.put("totalNodes", totalNodes);
+        templateData.put("timestamp", new Date());
+
+        // Before writing the file check if directory doesnt exists:
+        File directory = new File("axe-core");
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        // Generate the report
+        try (Writer fileWriter = new FileWriter("axe-core/accessibility_report.html")) {
+            template.process(templateData, fileWriter);
+        } catch (TemplateException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

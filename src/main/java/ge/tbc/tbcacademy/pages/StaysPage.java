@@ -40,7 +40,8 @@ public class StaysPage {
     public ElementsCollection
             properties = $$("[data-testid=\"property-card\"]"),
             offerLocations = $$("[data-testid=\"address\"]"),
-            occupancyConfigs = $$("[data-testid=\"price-for-x-nights\"]");    public SelenideElement adultsOptions = $x("//input[@id=\"group_adults\"]").parent(),
+            occupancyConfigs = $$("[data-testid=\"price-for-x-nights\"]");
+    public ElementsCollection destinationDropdown = $$("[data-testid=\"autocomplete-results-options\"] [id*='autocomplete-result']");    public SelenideElement adultsOptions = $x("//input[@id=\"group_adults\"]").parent(),
             removeAdults = adultsOptions.$("button", 0),
             addAdults = adultsOptions.$("button", 1),
             adultsCount = adultsOptions.$("div button ~span"),
@@ -52,7 +53,6 @@ public class StaysPage {
 
     withPets = occupancyPopup.$("[for=\"pets\"]"),
             occupancyConfigDoneBtn = occupancyPopup.$(byText("Done")).parent();
-    public ElementsCollection destinationDropdown = $$("[data-testid=\"autocomplete-results-options\"] [id*='autocomplete-result']");
 
     public SelenideElement findInDestDropDown(String destination) {
         return destinationDropdown.find(Condition.text(destination));
