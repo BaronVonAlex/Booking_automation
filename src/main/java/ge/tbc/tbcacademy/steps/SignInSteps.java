@@ -1,7 +1,6 @@
 package ge.tbc.tbcacademy.steps;
 
 import com.codeborne.selenide.WebDriverRunner;
-
 import ge.tbc.tbcacademy.data.constants.SignInConstants;
 import ge.tbc.tbcacademy.pages.SignInPage;
 import ge.tbc.tbcacademy.steps.common.HelperSteps;
@@ -60,7 +59,7 @@ public class SignInSteps extends HelperSteps<SignInSteps> {
         switchTo().window(1);
         assertTrue(url().contains(SignInConstants.APPLE_URL));
         switchTo().window(0);
-       return this;
+        return this;
 
     }
 
@@ -80,7 +79,7 @@ public class SignInSteps extends HelperSteps<SignInSteps> {
     }
 
     @Step("Clicks the Sign in with Google button on the sign-in page.")
-    public SignInSteps clickGoogleBtn(){
+    public SignInSteps clickGoogleBtn() {
         singInPage.singInWithGoogleBtn.click();
         return this;
 
@@ -120,7 +119,7 @@ public class SignInSteps extends HelperSteps<SignInSteps> {
     }
 
     @Step("Verifies that the incorrect password error message is displayed.")
-    public SignInSteps checkIncorrectPasswordText(){
+    public SignInSteps checkIncorrectPasswordText() {
         singInPage.incorrectPasswordText.shouldHave(text(SignInConstants.SIGN_IN_WITH_INCORRECT_PASSWORD));
         return this;
     }
@@ -150,9 +149,9 @@ public class SignInSteps extends HelperSteps<SignInSteps> {
     }
 
     @Step("Verify the 'Check your inbox' text is displayed.")
-    public  SignInSteps checkYourInboxTextCheck() {
+    public SignInSteps checkYourInboxTextCheck() {
         singInPage.checkYourInboxText.shouldHave(text("Check your inbox"));
-        return  this;
+        return this;
     }
 
     @Step("Click the 'Back to Sign In' button.")

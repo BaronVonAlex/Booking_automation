@@ -26,7 +26,7 @@ public class SearchTests extends ConfigTests {
     @BeforeMethod
     public void dismissPopups() {
         staysSteps.openBookingWebPage()
-                        .closeSignInPopUp();
+                .closeSignInPopUp();
     }
 
     @Description("choose destination in the search bar and check sugestion")
@@ -106,7 +106,7 @@ public class SearchTests extends ConfigTests {
     @Story("Choose desired number of rooms form the occupancy configurations")
     @Severity(SeverityLevel.CRITICAL)
     @Test(groups = "Search Bar Components")
-            public void chooseRoomNumber() {
+    public void chooseRoomNumber() {
         int n = 4;
         staysSteps.openOccupancyConfiguration()
                 .checkOccupancyConfigurationIsOpen()
@@ -114,6 +114,7 @@ public class SearchTests extends ConfigTests {
         Assert.assertEquals(staysSteps.getRoomCount(), n, "Rooms Dont Match");
         staysSteps.submitOccupancyConfigurations();
     }
+
     @Description("on stays page enter parameters and searchfor stays")
     @Feature("Search bar functionality")
     @Story("On stays page enter location, date, and number of guests and search for results")

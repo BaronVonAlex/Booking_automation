@@ -3,7 +3,7 @@ package ge.tbc.tbcacademy.data;
 public class LanguageConstants {
 
     /**
-     *  Links
+     * Links
      */
     public static final String
             DETECT_LANGUAGE_API = "https://ws.detectlanguage.com/0.2/detect";

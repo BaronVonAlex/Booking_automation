@@ -16,7 +16,7 @@ public class LanguageTests extends ConfigTests {
     DetectLanguageApiSteps detectLanguageApiSteps;
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         headerSectionSteps = new HeaderSectionSteps();
         mainPageSteps = new MainPageSteps();
         detectLanguageApiSteps = new DetectLanguageApiSteps();

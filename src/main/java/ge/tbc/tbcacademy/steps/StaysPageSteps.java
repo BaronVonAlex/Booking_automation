@@ -98,6 +98,7 @@ public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
         staysPage.flexibleDatesContainer.scrollIntoView(false);
         return this;
     }
+
     @Step("Check if Start date was correctly saved {0}")
     public StaysPageSteps checkStartDateIsSet(LocalDate start) {
         staysPage.startDate.shouldHave(partialText(Util.getShortMonthFromDate(start)));
@@ -105,6 +106,7 @@ public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
 
         return this;
     }
+
     @Step("Check that end date was correctly saved {0}")
     public StaysPageSteps checkEndDateIsSet(LocalDate end) {
         staysPage.endDate.shouldHave(partialText(Util.getDayOfMonth(end)));
@@ -112,15 +114,18 @@ public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
 
         return this;
     }
+
     @Step("Get Number Of Adults")
     public int getNumberOfAdults() {
         return Util.parseStringToInt(staysPage.adultsCount.getText());
     }
+
     @Step("Check occupancy window is open")
     public StaysPageSteps checkOccupancyConfigurationIsOpen() {
         staysPage.occupancyPopup.shouldBe(visible);
         return this;
     }
+
     @Step("Select number of staying Adults {0}")
     public StaysPageSteps setNumberOfAdultsTo(int numberOfAdults) {
         int adults = Util.parseStringToInt(staysPage.adultsCount.getText());
@@ -146,16 +151,19 @@ public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
 
         return this;
     }
+
     @Step("Increase number of staying Adults")
     public StaysPageSteps addAdult() {
         staysPage.addAdults.shouldBe(clickable).click();
         return this;
     }
+
     @Step("Decrease number of staying Adults")
     public StaysPageSteps decreaseAdults() {
         staysPage.removeAdults.shouldBe(clickable).click();
         return this;
     }
+
     @Step("Increase number of staying children")
     public StaysPageSteps addChild() {
         if (!staysPage.addChild.isDisplayed() || !staysPage.addChild.isEnabled()) {
@@ -164,6 +172,7 @@ public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
         staysPage.addChild.shouldBe(clickable).click();
         return this;
     }
+
     @Step("Select child's age {0}")
     public StaysPageSteps chooseChildAge(int age) {
         if (age >= 18) {
@@ -173,10 +182,12 @@ public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
         staysPage.childAgeDropdown.selectOptionContainingText(String.valueOf(age));
         return this;
     }
+
     @Step("Get selected children count")
     public int getChildrenCount() {
         return Util.parseStringToInt(staysPage.childrenCount.getText());
     }
+
     @Step("Press On Done in Occupancy configuration")
     public StaysPageSteps submitOccupancyConfigurations() {
         if (staysPage.occupancyConfigDoneBtn.exists()) {
@@ -184,11 +195,13 @@ public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
         }
         return this;
     }
+
     @Step("Select Pet slider In Occupancy configuration")
     public StaysPageSteps addPet() {
         staysPage.withPets.shouldBe(clickable).click();
         return this;
     }
+
     @Step("Select Desired Number Of Rooms {0}")
     public StaysPageSteps setRoomsTo(int n) {
         while (staysPage.addRoom.isEnabled() && !staysPage.roomCount.getText().equals(String.valueOf(n))) {
@@ -199,10 +212,12 @@ public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
         }
         return this;
     }
+
     @Step("Get Number Of Rooms")
     public int getRoomCount() {
         return Util.parseStringToInt(staysPage.roomCount.getText());
     }
+
     @Step("Decrease number of rooms")
     public StaysPageSteps removeRoom() {
         if (staysPage.removeRoom.isEnabled()) {
@@ -213,11 +228,13 @@ public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
 
         return this;
     }
+
     @Step("Click on search button")
     public StaysPageSteps clickOnSearchButton() {
         staysPage.searchButton.scrollTo().shouldBe(clickable).click();
         return this;
     }
+
     @Step("Make Sure search results are displayed")
     public StaysPageSteps checkSearchResultsAreReady() {
         staysPage.searchResult.should(appear);
@@ -234,12 +251,13 @@ public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
         ));
         return this;
     }
+
     @Step("Check that all results are fulfilling occupancy configurations {0} {1} {2}")
     public StaysPageSteps offersSatisfyConfigs(int adults, int children, int days) {
         staysPage.occupancyConfigs.shouldHave(CollectionCondition.allMatch(
                 "Occupancy configs are set",
                 e -> {
-                    return e.getText().contains(Util.getOccupancyString(adults,children,days));
+                    return e.getText().contains(Util.getOccupancyString(adults, children, days));
                 }
         ));
         return this;

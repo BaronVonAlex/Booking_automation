@@ -23,7 +23,7 @@ public class SignInTests extends ConfigTests {
     @Story("Email Sign-In Process")
     @Description("Test email sign-in functionality, including validation of error messages for invalid inputs and the redirect functionality")
     @Severity(SeverityLevel.CRITICAL)
-    @Test(description = "Test email sign-in functionality.",priority = 1)
+    @Test(description = "Test email sign-in functionality.", priority = 1)
     public void logInTest() {
         headerSectionSteps
                 .closeSignInPopUp()

@@ -3,14 +3,12 @@ package ge.tbc.tbcacademy.data.constants;
 public class SignInConstants {
 
     /**
-     *  Links
+     * Links
      */
     public static final String BOOKING_URL = "https://www.booking.com/";
     public static final String FACEBOOK_URL = "facebook.com";
     public static final String GOOGLE_URL = "google.com";
     public static final String APPLE_URL = "appleid.apple.com";
-
-
 
 
     /**
@@ -20,7 +18,6 @@ public class SignInConstants {
     public static final String SIGN_IN_WITH_EMPTY_FIELD = "enter your email address";
     public static final String SIGN_IN_WITH_INCORRECT_EMAIL = "Make sure the email address you entered is correct";
     public static final String SIGN_IN_WITH_INCORRECT_PASSWORD = "The email and password combination you entered doesn't match";
-
 
 
     /**

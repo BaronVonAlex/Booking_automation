@@ -18,13 +18,11 @@ public class SignInPage {
             passwordField = $(".YyPS4CCyBc09wPIEDhf6"),
             signInButton = $x("//button[.//span[text()='Sign in']]"),
             incorrectPasswordText = $("#password-note"),
-            forgottenPasswordBtn =$("button[data-ga-label='forgot password']"),
-            forgottenPasswordText=$x("//h1[@class='osvS4MYxeSR4s9RPRMlw nw-step-header']"),
+            forgottenPasswordBtn = $("button[data-ga-label='forgot password']"),
+            forgottenPasswordText = $x("//h1[@class='osvS4MYxeSR4s9RPRMlw nw-step-header']"),
             sendResetLinkBtn = $("button[type='submit']").$(byText("Send reset link")),
-            checkYourInboxText =$x("//h1[text()='Check your inbox']"),
+            checkYourInboxText = $x("//h1[text()='Check your inbox']"),
             backToSignInBtn = $x("//button[.//span[text()='Back to sign-in']]");
-
-
 
 
 }

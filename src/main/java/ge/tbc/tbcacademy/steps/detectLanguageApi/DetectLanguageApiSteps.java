@@ -12,7 +12,7 @@ public class DetectLanguageApiSteps {
     ApiResponse apiResponse;
 
     @Step("Detect the language of the text: '{0}'")
-    public DetectLanguageApiSteps detectLanguage(String text){
+    public DetectLanguageApiSteps detectLanguage(String text) {
         apiResponse = given()
                 .spec(detectLanguageRequestSpec())
                 .queryParam("q", text)
@@ -22,7 +22,7 @@ public class DetectLanguageApiSteps {
     }
 
     @Step("Validate that the detected language code is '{0}'")
-    public void validateLanguageWithCode(String code){
+    public void validateLanguageWithCode(String code) {
         Assert.assertEquals(apiResponse.data().detections().get(0).language(), code, LANGUAGE_CODE_IS_NOT_SAME);
     }
 }

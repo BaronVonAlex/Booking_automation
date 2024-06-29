@@ -14,6 +14,6 @@ public class CommonElementPicker {
      * Finds Date element from calendar table can be reused
      **/
     public SelenideElement getDateFormCalendar(String date, String month, String year) {
-        return $("[aria-label='"+ Util.getCalendarFormatDate(date,month,year)+"']");
+        return $("[aria-label='" + Util.getCalendarFormatDate(date, month, year) + "']");
     }
 }
