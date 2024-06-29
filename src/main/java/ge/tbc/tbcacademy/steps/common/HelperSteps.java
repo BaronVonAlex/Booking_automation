@@ -3,6 +3,7 @@ package ge.tbc.tbcacademy.steps.common;
 import com.codeborne.selenide.SelenideElement;
 import ge.tbc.tbcacademy.pages.HomePage;
 import io.qameta.allure.Step;
+import org.testng.asserts.SoftAssert;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
@@ -10,10 +11,9 @@ import static com.codeborne.selenide.Selenide.open;
 import static ge.tbc.tbcacademy.data.Constants.BOOKING_URL;
 import static ge.tbc.tbcacademy.data.JSScripts.REMOVE_DIALOG_ELEMENT_SCRIPT;
 import static ge.tbc.tbcacademy.utils.Util.getPseudoElementStyle;
-import static org.testng.Assert.assertNotEquals;
 
 public class HelperSteps<T> {
-
+    SoftAssert softAssert = new SoftAssert();
     HomePage homePage = new HomePage();
 
     @Step("Open Booking.com Webpage.")
@@ -59,8 +59,8 @@ public class HelperSteps<T> {
         element.hover();
         String afterHoverColor = getPseudoElementStyle(element);
 
-        assertNotEquals(originalColorValue, afterHoverColor);
-
+        softAssert.assertNotEquals(originalColorValue, afterHoverColor);
+        softAssert.assertAll();
         return (T) this;
     }
 
