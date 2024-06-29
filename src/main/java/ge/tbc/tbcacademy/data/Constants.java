@@ -12,4 +12,5 @@ public class Constants {
      * Error message constants
      */
     public static final String INVALID_BROWSER_PARAMETER_MESSAGE = "Invalid browser parameter. Supported values: firefox, chrome, edge";
+
 }
