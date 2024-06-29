@@ -34,7 +34,7 @@ public class HeaderSectionSteps extends HelperSteps<HeaderSectionSteps> {
         headerSection.bookingHomeHeader.shouldBe(visible);
         return this;
     }
-  
+
     @Step("Navigate to Flights Page.")
     public HeaderSectionSteps navigateToFlightPage() {
         headerSection.flightsBtn.click();
