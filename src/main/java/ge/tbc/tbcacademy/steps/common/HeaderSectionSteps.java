@@ -3,8 +3,7 @@ package ge.tbc.tbcacademy.steps.common;
 import ge.tbc.tbcacademy.pages.common.HeaderSection;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 
 
 public class HeaderSectionSteps extends HelperSteps<HeaderSectionSteps> {
@@ -44,6 +43,12 @@ public class HeaderSectionSteps extends HelperSteps<HeaderSectionSteps> {
     @Step("Navigate to Car Rental Page.")
     public HeaderSectionSteps navigateToCarRentalPage() {
         headerSection.carRental.click();
+        return this;
+    }
+
+    @Step("Click the navigation item with the text '{0}'")
+    public HeaderSectionSteps clickNavItemByText(String itemText) {
+        headerSection.navbarItems.filterBy(text(itemText)).first().click();
         return this;
     }
 }

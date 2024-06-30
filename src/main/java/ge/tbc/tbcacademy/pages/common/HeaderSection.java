@@ -24,5 +24,6 @@ public class HeaderSection {
             carRental = $("a[href='https://www.booking.com/cars.html']");
 
     public ElementsCollection
-            languages = $$x("//button[@data-testid='selection-item']");
+            languages = $$x("//button[@data-testid='selection-item']"),
+            navbarItems = $$x("//div[@data-testid='web-shell-header-mfe']/header//li/a");
 }
