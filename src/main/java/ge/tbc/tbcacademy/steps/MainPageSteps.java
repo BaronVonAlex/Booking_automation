@@ -8,14 +8,6 @@ import io.qameta.allure.Step;
 public class MainPageSteps extends HelperSteps<MainPageSteps> {
     MainPage mainPage = new MainPage();
 
-    @Step("Close Sign/register In Suggestion Popup")
-    public MainPageSteps closeSignInPopUp() {
-        if (mainPage.closeSignInButton.isDisplayed()) {
-            mainPage.closeSignInButton.hover().click();
-        }
-        return this;
-    }
-
     @Step("Return main Page header and subtitle")
     public String getMainPageHeader() {
         return String.format("%s %s", mainPage.mainHeader.getText(), mainPage.headerSubTitle.getText());

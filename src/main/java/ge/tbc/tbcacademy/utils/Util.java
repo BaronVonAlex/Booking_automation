@@ -14,6 +14,7 @@ import java.io.Writer;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.*;
+import java.util.stream.IntStream;
 
 import static com.codeborne.selenide.Selenide.webdriver;
 
@@ -177,5 +178,13 @@ public class Util {
         } catch (TemplateException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Checks if a list of integers is sorted in non-decreasing order.
+     */
+    public static boolean isSorted(List<Integer> list) {
+        return IntStream.range(1, list.size())
+                .allMatch(i -> list.get(i) >= list.get(i - 1));
     }
 }

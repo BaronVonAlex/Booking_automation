@@ -41,7 +41,17 @@ public class StaysPage {
             properties = $$("[data-testid=\"property-card\"]"),
             offerLocations = $$("[data-testid=\"address\"]"),
             occupancyConfigs = $$("[data-testid=\"price-for-x-nights\"]");
-    public ElementsCollection destinationDropdown = $$("[data-testid=\"autocomplete-results-options\"] [id*='autocomplete-result']");    public SelenideElement adultsOptions = $x("//input[@id=\"group_adults\"]").parent(),
+    public ElementsCollection destinationDropdown = $$("[data-testid=\"autocomplete-results-options\"] [id*='autocomplete-result']");
+
+    public SelenideElement findInDestDropDown(String destination) {
+        return destinationDropdown.find(Condition.text(destination));
+    }
+
+    public SelenideElement getDateFormCalendar(String date, String month, String year) {
+        return $("[aria-label='" + Util.getCalendarFormatDate(date, month, year) + "']");
+    }
+
+    public SelenideElement adultsOptions = $x("//input[@id=\"group_adults\"]").parent(),
             removeAdults = adultsOptions.$("button", 0),
             addAdults = adultsOptions.$("button", 1),
             adultsCount = adultsOptions.$("div button ~span"),
@@ -53,16 +63,6 @@ public class StaysPage {
 
     withPets = occupancyPopup.$("[for=\"pets\"]"),
             occupancyConfigDoneBtn = occupancyPopup.$(byText("Done")).parent();
-
-    public SelenideElement findInDestDropDown(String destination) {
-        return destinationDropdown.find(Condition.text(destination));
-    }
-
-    public SelenideElement getDateFormCalendar(String date, String month, String year) {
-        return $("[aria-label='" + Util.getCalendarFormatDate(date, month, year) + "']");
-    }
-
-
 
 
 }

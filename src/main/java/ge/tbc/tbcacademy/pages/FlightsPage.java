@@ -14,7 +14,7 @@ public class FlightsPage {
             formSection = $(".form-section"),
             destinationFrom = $(".zEiP-formField.zEiP-origin"),
             destinationFromText = $x("//input[@aria-label='Flight origin input']"),
-            destinationToText = $x("//input[@aria-label='Flight destination input']"),
+            destinationInput = $x("//input[@aria-label='Flight destination input']"),
             switchDestinationsButton = $(".zEiP-formField.zEiP-switch"),
             destinationTo = $(".zEiP-formField.zEiP-destination"),
             datesField = $(".zEiP-formField.zEiP-dates"),
@@ -24,5 +24,9 @@ public class FlightsPage {
             submitButtonText = $x("//span[@class='']"),
             footer = $(".Su1_"),
             headerBackground = $(".UIM7"),
-            originPlace = $(".c_neb-item-value");
+            originPlace = $(".c_neb-item-value"),
+            firstDestinationSuggestion = $x("//li[@role='option']"),
+            searchButton = $x("//button[@type = 'submit']"),
+            returnDropDown = $x("//div/span[text()='Return']"),
+            oneWayOption = $x("//li[@aria-label='One-way']");
 }

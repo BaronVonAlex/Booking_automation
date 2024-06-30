@@ -126,7 +126,7 @@ public class UITests extends ConfigTests {
 
                 // Validate element values
                 .validateElementValue(flightsPage.destinationFromText, ATTRIBUTE_PLACEHOLDER, DESTINATION_FROM_PLACEHOLDER)
-                .validateElementValue(flightsPage.destinationToText, ATTRIBUTE_PLACEHOLDER, DESTINATION_TO_PLACEHOLDER);
+                .validateElementValue(flightsPage.destinationInput, ATTRIBUTE_PLACEHOLDER, DESTINATION_TO_PLACEHOLDER);
     }
 
     @Severity(SeverityLevel.MINOR)

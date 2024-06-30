@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.Selenide.open;
 import static ge.tbc.tbcacademy.data.Constants.BOOKING_URL;
 import static ge.tbc.tbcacademy.data.JSScripts.REMOVE_DIALOG_ELEMENT_SCRIPT;
+import static ge.tbc.tbcacademy.data.JSScripts.SMOOTH_SCROLL_TO_ELEMENT_SCRIPT;
 import static ge.tbc.tbcacademy.utils.Util.getPseudoElementStyle;
 
 public class HelperSteps<T> {
@@ -67,6 +68,12 @@ public class HelperSteps<T> {
     @Step("Validate if Element has proper Text. {1}")
     public T validateElementText(SelenideElement element, String expectedText) {
         element.shouldHave(text(expectedText));
+        return (T) this;
+    }
+
+    @Step("Scroll to element with javascript {0}")
+    public T scrollToElementUsingJavascript(SelenideElement element) {
+        executeJavaScript(SMOOTH_SCROLL_TO_ELEMENT_SCRIPT, element);
         return (T) this;
     }
 }
