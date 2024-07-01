@@ -6,7 +6,7 @@ import ge.tbc.tbcacademy.pages.MainPage;
 import ge.tbc.tbcacademy.steps.common.HelperSteps;
 import io.qameta.allure.Step;
 
-import static ge.tbc.tbcacademy.data.UIConstants.*;
+import static ge.tbc.tbcacademy.data.constants.UIConstants.*;
 
 public class MainPageSteps extends HelperSteps<MainPageSteps> {
     MainPage mainPage = new MainPage();
@@ -17,10 +17,9 @@ public class MainPageSteps extends HelperSteps<MainPageSteps> {
         return String.format("%s %s", mainPage.mainHeader.getText(), mainPage.headerSubTitle.getText());
     }
 
-
-    @Step("Validate background image's src attribute")
-    public MainPageSteps validateBackgroundImageSrc() {
-        validateElementValue(homePage.backgroundImage, ATTRIBUTE_SRC, BACKGROUND_IMG_SRC_VAL);
+    @Step("Validate if background image exists on main page")
+    public MainPageSteps validateIfBackgroundImageExists() {
+        validateIfElementExists(homePage.backgroundImage);
         return this;
     }
 

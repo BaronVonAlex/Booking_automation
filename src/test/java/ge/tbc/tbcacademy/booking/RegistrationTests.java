@@ -1,7 +1,7 @@
 package ge.tbc.tbcacademy.booking;
 
 import com.codeborne.selenide.Selenide;
-import ge.tbc.tbcacademy.config.ConfigTests;
+import ge.tbc.tbcacademy.booking.config.ConfigTests;
 import ge.tbc.tbcacademy.data.dataproviders.invalidPasswordDataProvide;
 import ge.tbc.tbcacademy.pages.RegisterPage;
 import ge.tbc.tbcacademy.steps.RegistrationPageSteps;
@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static ge.tbc.tbcacademy.data.RandomCredentials.*;
-import static ge.tbc.tbcacademy.data.RegistrationConstants.*;
+import static ge.tbc.tbcacademy.data.constants.RegistrationConstants.*;
 
 @Epic("User Registration")
 public class RegistrationTests extends ConfigTests {
@@ -43,7 +43,7 @@ public class RegistrationTests extends ConfigTests {
                 .clearInputField(registerPage.emailInputField)
                 .inputMailAddress(INVALID_MAIL_FORMAT)
                 .clickOnSubmitBtn()
-                .getIncorrectMailMsg(INVALID_MAIL_FORMAT_ERR_MSG)
+                .getIncorrectMailMsg()
                 .clearInputField(registerPage.emailInputField)
                 .inputMailAddress(VALID_MAIL_FORMAT)
                 .clickOnSubmitBtn();
@@ -75,7 +75,7 @@ public class RegistrationTests extends ConfigTests {
                 .inputPassword(VALID_PASSWORD)
                 .inputConfirmationPassword(PASSWORD_WITHOUT_UPPER)
                 .clickOnSubmitBtn()
-                .validateIfNonMatchingPasswordsShowErrMsg(PASSWORDS_DID_NOT_MATCH_ERR_MSG)
+                .validateIfNonMatchingPasswordsShowErrMsg()
                 .clearInputField(registerPage.passwordInputField)
                 .inputPassword(VALID_PASSWORD)
                 .clearInputField(registerPage.confirmationPasswordInputField)

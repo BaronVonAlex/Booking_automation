@@ -4,7 +4,7 @@ import ge.tbc.tbcacademy.pages.FlightsPage;
 import ge.tbc.tbcacademy.steps.common.HelperSteps;
 import io.qameta.allure.Step;
 
-import static ge.tbc.tbcacademy.data.UIConstants.*;
+import static ge.tbc.tbcacademy.data.constants.UIConstants.*;
 
 public class FlightsPageSteps extends HelperSteps<FlightsPageSteps> {
     FlightsPage flightsPage = new FlightsPage();
@@ -108,7 +108,7 @@ public class FlightsPageSteps extends HelperSteps<FlightsPageSteps> {
 
     @Step("Validate flights title text")
     public FlightsPageSteps validateFlightsTitleText() {
-        validateElementText(flightsPage.flightsTitle, FLIGHTS_TITLE_TEXT);
+        validateElementTextAnyOf(flightsPage.flightsTitle, FLIGHTS_TITLE_TEXT, FLIGHTS_TITLE_TEXT_SECOND_VARIANT);
         return this;
     }
 

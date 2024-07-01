@@ -1,4 +1,4 @@
-package ge.tbc.tbcacademy.config;
+package ge.tbc.tbcacademy.booking.config;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
@@ -15,7 +15,7 @@ import org.testng.annotations.*;
 
 import static com.codeborne.selenide.AssertionMode.SOFT;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
-import static ge.tbc.tbcacademy.data.Constants.INVALID_BROWSER_PARAMETER_MESSAGE;
+import static ge.tbc.tbcacademy.data.constants.Constants.INVALID_BROWSER_PARAMETER_MESSAGE;
 
 @Listeners({SoftAsserts.class})
 public class ConfigTests {

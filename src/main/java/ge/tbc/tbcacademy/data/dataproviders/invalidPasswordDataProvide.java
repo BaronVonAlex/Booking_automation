@@ -3,7 +3,7 @@ package ge.tbc.tbcacademy.data.dataproviders;
 import org.testng.annotations.DataProvider;
 
 import static ge.tbc.tbcacademy.data.RandomCredentials.*;
-import static ge.tbc.tbcacademy.data.RegistrationConstants.*;
+import static ge.tbc.tbcacademy.data.constants.RegistrationConstants.*;
 
 public class invalidPasswordDataProvide {
     @DataProvider(name = "invalidPasswordData")

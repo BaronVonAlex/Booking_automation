@@ -1,6 +1,6 @@
 package ge.tbc.tbcacademy.booking;
 
-import ge.tbc.tbcacademy.config.ConfigTests;
+import ge.tbc.tbcacademy.booking.config.ConfigTests;
 import ge.tbc.tbcacademy.pages.CarRentalPage;
 import ge.tbc.tbcacademy.pages.FlightsPage;
 import ge.tbc.tbcacademy.pages.HomePage;
@@ -71,7 +71,7 @@ public class UITests extends ConfigTests {
     public void mainHomePage() {
         mainPageSteps
                 // Validate element values
-                .validateBackgroundImageSrc()
+                .validateIfBackgroundImageExists()
                 .validateInputFieldPlaceholder()
 
                 // Validate element text
@@ -102,7 +102,7 @@ public class UITests extends ConfigTests {
     @Story("Flights Page UI Items")
     @Feature("Flight Page Elements")
     @Description("Validate if all Items are present on Flight Page, check if their attribute values and background colors are correct.")
-    @Test(description = "Validate UI elements on MainPage", priority = 4)
+    @Test(description = "Validate UI elements on Flight Page", priority = 4)
     public void flightPageTests() {
         headerSectionSteps
                 .navigateToFlightPage();

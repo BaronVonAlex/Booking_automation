@@ -1,4 +1,4 @@
-package ge.tbc.tbcacademy.data;
+package ge.tbc.tbcacademy.data.constants;
 
 public class UIConstants {
 
@@ -29,12 +29,14 @@ public class UIConstants {
             SIGN_IN_TXT_VAL = "Sign in",
             FLIGHT_SEARCH_BTN_CLR = "rgba(0, 113, 194, 1)",
             CAR_RENTAL_HEADER_TEXT = "Car rentals for any kind of trip",
+            CAR_RENTAL_HEADER_TEXT_SECOND_VARIANT = "Car hire for any kind of trip",
             SEARCH_BUTTON_TEXT = "Search",
             PICK_UP_LOCATION_VAL = "Pick-up location",
             HEADER_BACKGROUND_COLOR = "rgba(0, 53, 128, 1)",
             SUBMIT_BUTTON_COLOR = "rgba(0, 113, 194, 1)",
             BACKGROUND_DIV_COLOR = "rgba(0, 0, 0, 0)",
             FLIGHTS_TITLE_TEXT = "Search hundreds of flight sites at once.",
+            FLIGHTS_TITLE_TEXT_SECOND_VARIANT = "Where do you want to go?",
             SUBMIT_BUTTON_TEXT = "Search",
             ORIGIN_PLACE_TEXT = "Tbilisi (TBS)",
             DESTINATION_FROM_PLACEHOLDER = "",

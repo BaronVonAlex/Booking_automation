@@ -1,14 +1,14 @@
 package ge.tbc.tbcacademy.steps;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import ge.tbc.tbcacademy.pages.RegisterPage;
 import ge.tbc.tbcacademy.steps.common.HelperSteps;
+import ge.tbc.tbcacademy.utils.Util;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
+import static ge.tbc.tbcacademy.data.constants.RegistrationConstants.*;
 
 public class RegistrationPageSteps extends HelperSteps<RegistrationPageSteps> {
     RegisterPage registerPage = new RegisterPage();
@@ -21,7 +21,11 @@ public class RegistrationPageSteps extends HelperSteps<RegistrationPageSteps> {
 
     @Step("Clear Input Field before inputting Data {0}")
     public RegistrationPageSteps clearInputField(SelenideElement element) {
-        element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        if (Util.isMacOS()){
+            element.sendKeys(Keys.chord(Keys.COMMAND, "a", Keys.DELETE));
+        }else {
+            element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        }
         return this;
     }
 
@@ -31,9 +35,12 @@ public class RegistrationPageSteps extends HelperSteps<RegistrationPageSteps> {
         return this;
     }
 
-    @Step("Validate if Error Message shows up on Incorrectly put Mail. {0}")
-    public RegistrationPageSteps getIncorrectMailMsg(String text) {
-        registerPage.gmailErrorMessage.shouldHave(text(text));
+    @Step("Validate if Error Message shows up on Incorrectly put Mail.")
+    public RegistrationPageSteps getIncorrectMailMsg(){
+        registerPage.gmailErrorMessage.shouldHave(anyOf(
+                text(INVALID_MAIL_FORMAT_ERR_MSG_SECOND_VARIANT),
+                text(INVALID_MAIL_FORMAT_ERR_MSG)
+        ));
         return this;
     }
 
@@ -55,32 +62,17 @@ public class RegistrationPageSteps extends HelperSteps<RegistrationPageSteps> {
         return this;
     }
 
-    @Step("Get Error Message from Un-matching Passwords and validate it. {0}")
-    public RegistrationPageSteps validateIfNonMatchingPasswordsShowErrMsg(String text) {
-        registerPage.confirmPasswordErrorMessage.shouldHave(text(text));
+    @Step("Get Error Message from Un-matching Passwords and validate it.")
+    public RegistrationPageSteps validateIfNonMatchingPasswordsShowErrMsg() {
+        registerPage.confirmPasswordErrorMessage.shouldHave(anyOf(
+                text(PASSWORDS_DID_NOT_MATCH_ERR_MSG_SECOND_VARIANT),
+                text(PASSWORDS_DID_NOT_MATCH_ERR_MSG)));
         return this;
     }
 
     @Step("Validate if Are you Robot Text is shown.")
     public RegistrationPageSteps validateRobotActions() {
         registerPage.areYouRobotText.shouldBe(visible);
-        return this;
-    }
-
-    @Step("Clear Browsing Cookies.")
-    public RegistrationPageSteps clearBrowserCookies() {
-        Selenide.clearBrowserCookies();
-        return this;
-    }
-
-    @Step("Press and Hold Anti-Bot button")
-    public RegistrationPageSteps pressAndHoldAntiBotBtn() {
-        Selenide.actions()
-                .moveToElement(registerPage.robotPressAndHoldBtn)
-                .clickAndHold()
-                .pause(8000)
-                .release()
-                .perform();
         return this;
     }
 }

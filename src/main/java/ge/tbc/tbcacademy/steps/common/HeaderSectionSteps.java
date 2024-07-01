@@ -4,7 +4,7 @@ import ge.tbc.tbcacademy.pages.common.HeaderSection;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.*;
-import static ge.tbc.tbcacademy.data.UIConstants.*;
+import static ge.tbc.tbcacademy.data.constants.UIConstants.*;
 
 
 public class HeaderSectionSteps extends HelperSteps<HeaderSectionSteps> {

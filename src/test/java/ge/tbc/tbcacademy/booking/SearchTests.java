@@ -1,7 +1,7 @@
 package ge.tbc.tbcacademy.booking;
 
 import com.codeborne.selenide.Configuration;
-import ge.tbc.tbcacademy.config.ConfigTests;
+import ge.tbc.tbcacademy.booking.config.ConfigTests;
 import ge.tbc.tbcacademy.data.dataproviders.TripDataProvider;
 import ge.tbc.tbcacademy.steps.StaysPageSteps;
 import ge.tbc.tbcacademy.utils.Util;

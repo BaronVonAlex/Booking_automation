@@ -1,6 +1,6 @@
 package ge.tbc.tbcacademy.booking;
 
-import ge.tbc.tbcacademy.config.ConfigTests;
+import ge.tbc.tbcacademy.booking.config.ConfigTests;
 import ge.tbc.tbcacademy.steps.FlightsPageSteps;
 import ge.tbc.tbcacademy.steps.KayakPageSteps;
 import ge.tbc.tbcacademy.steps.MainPageSteps;
@@ -13,8 +13,8 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static ge.tbc.tbcacademy.data.Constants.DESTINATION_CITY;
-import static ge.tbc.tbcacademy.data.Constants.FLIGHTS;
+import static ge.tbc.tbcacademy.data.constants.Constants.DESTINATION_CITY;
+import static ge.tbc.tbcacademy.data.constants.Constants.FLIGHTS;
 
 @Epic("Booking Website Functionality")
 public class FlightsTests extends ConfigTests {

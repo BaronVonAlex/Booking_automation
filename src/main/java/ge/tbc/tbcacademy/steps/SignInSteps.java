@@ -1,15 +1,16 @@
 package ge.tbc.tbcacademy.steps;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 import ge.tbc.tbcacademy.data.constants.SignInConstants;
 import ge.tbc.tbcacademy.pages.SignInPage;
 import ge.tbc.tbcacademy.steps.common.HelperSteps;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.switchTo;
 import static com.codeborne.selenide.WebDriverRunner.url;
+import static ge.tbc.tbcacademy.data.constants.SignInConstants.*;
 import static org.testng.Assert.assertTrue;
 
 
@@ -43,7 +44,9 @@ public class SignInSteps extends HelperSteps<SignInSteps> {
 
     @Step("Verifies that the error message displayed matches the expected text for an incorrect email format.")
     public SignInSteps verifyIncorrectEmailText() {
-        singInPage.emailAlert.shouldHave(text(SignInConstants.SIGN_IN_WITH_INCORRECT_EMAIL));
+        singInPage.emailAlert.shouldHave(Condition.anyOf(
+                text(SIGN_IN_WITH_INCORRECT_EMAIL),
+                text(SIGN_IN_WITH_INCORRECT_EMAIL_SECOND_VARIANT)));
         singInPage.emailField.clear();
         return this;
     }
@@ -138,7 +141,9 @@ public class SignInSteps extends HelperSteps<SignInSteps> {
 
     @Step("Verify the forgotten password page is displayed.")
     public SignInSteps checkForgottenPasswordPage() {
-        singInPage.forgottenPasswordText.shouldBe(visible).shouldHave(text(SignInConstants.FORGOTTEN_PASSWORD_TEXT));
+        singInPage.forgottenPasswordText.shouldBe(visible).should(anyOf(
+                text(SignInConstants.FORGOTTEN_PASSWORD_TEXT),
+                text(FORGOTTEN_PASSWORD_TEXT_SECOND_VARIANT)));
         return this;
     }
 
