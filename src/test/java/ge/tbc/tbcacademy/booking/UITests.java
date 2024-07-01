@@ -5,15 +5,12 @@ import ge.tbc.tbcacademy.pages.CarRentalPage;
 import ge.tbc.tbcacademy.pages.FlightsPage;
 import ge.tbc.tbcacademy.pages.HomePage;
 import ge.tbc.tbcacademy.pages.common.HeaderSection;
-import ge.tbc.tbcacademy.steps.HomePageSteps;
-import ge.tbc.tbcacademy.steps.RegistrationPageSteps;
+import ge.tbc.tbcacademy.steps.*;
 import ge.tbc.tbcacademy.steps.common.HeaderSectionSteps;
 import io.qameta.allure.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
-import static ge.tbc.tbcacademy.data.UIConstants.*;
 
 @Epic("User Interface Tests")
 public class UITests extends ConfigTests {
@@ -22,7 +19,10 @@ public class UITests extends ConfigTests {
     protected static RegistrationPageSteps registrationPageSteps;
     protected static HomePageSteps homePageSteps;
     protected static HomePage homePage;
+    protected static MainPageSteps mainPageSteps;
     protected static FlightsPage flightsPage;
+    protected static FlightsPageSteps flightsPageSteps;
+    protected static CarRentalPageSteps carRentalPageSteps;
     protected static CarRentalPage carRentalPage;
     protected static SoftAssert softAssert;
 
@@ -36,6 +36,9 @@ public class UITests extends ConfigTests {
         flightsPage = new FlightsPage();
         carRentalPage = new CarRentalPage();
         softAssert = new SoftAssert();
+        flightsPageSteps = new FlightsPageSteps();
+        mainPageSteps = new MainPageSteps();
+        carRentalPageSteps = new CarRentalPageSteps();
         registrationPageSteps.openBookingWebPage();
     }
 
@@ -47,16 +50,17 @@ public class UITests extends ConfigTests {
     public void headerUITests() {
         homePageSteps.closeSignInPopUp();
         headerSectionSteps
-                .validateElementValue(headerSection.headerLogo, ATTRIBUTE_ARIA_LABEL, BOOKING_ATTR_VAL)
-                .validateElementValue(headerSection.changeCurrencyBtn, ATTRIBUTE_ARIA_LABEL, CURRENCY_BTN_ATR_VAL)
-                .validateIfElementExists(headerSection.registerBtn)
-                .validateIfElementExists(headerSection.loginBtn)
-                .validateIfElementExists(headerSection.changeLangBtn)
-                .validateIfElementExists(headerSection.flightsBtn)
-                .validateIfElementExists(headerSection.carRentalBtn)
-                .validateIfElementExists(headerSection.attractionsBtn)
-                .validateIfElementExists(headerSection.airportTaxisBtn)
-                .validateElementColor(headerSection.headerBackground, HEADER_ELEMENT_BACKGROUND_CLR);
+                .validateHeaderLogoAriaLabel()
+                .validateChangeCurrencyBtnAriaLabel()
+                .validateRegisterBtnExists()
+                .validateLoginBtnExists()
+                .validateChangeLangBtnExists()
+                .validateFlightsBtnExists()
+                .validateCarRentalBtnExists()
+                .validateAttractionsBtnExists()
+                .validateAirportTaxisBtnExists()
+                .validateHeaderBackgroundColor()
+                .validateHoverEffectColorChangeRegisterBtn();
     }
 
     @Severity(SeverityLevel.MINOR)
@@ -65,35 +69,33 @@ public class UITests extends ConfigTests {
     @Description("Validate if all Items are present on Main Page, check if their attribute values and background colors are correct.")
     @Test(description = "Validate UI elements on MainPage", priority = 2)
     public void mainHomePage() {
-        homePageSteps
+        mainPageSteps
                 // Validate element values
-                .validateElementValue(homePage.backgroundImage, ATTRIBUTE_SRC, BACKGROUND_IMG_SRC_VAL)
-                .validateElementValue(homePage.inputField, ATTRIBUTE_PLACEHOLDER, HOME_INPUT_FIELD_ATR_VAL)
+                .validateBackgroundImageSrc()
+                .validateInputFieldPlaceholder()
 
                 // Validate element text
-                .validateElementText(homePage.dateInputFieldText, CHECK_IN_TXT_VAL)
-                .validateElementText(homePage.searchSubmitBtnText, SEARCH_TXT_VAL)
-                .validateElementText(homePage.registerBtnText, REGISTER_TXT_VAL)
-                .validateElementText(homePage.signInBtnText, SIGN_IN_TXT_VAL)
+                .validateDateInputFieldText()
+                .validateSearchSubmitBtnText()
+                .validateRegisterBtnText()
+                .validateSignInBtnText()
 
                 // Validate element existence
-                .validateIfElementExists(homePage.searchSubmitBtn)
-                .validateIfElementExists(homePage.instantDiscountRegisterBtn)
-                .validateIfElementExists(homePage.instantDiscountSignInBtn)
-                .validateIfElementExists(homePage.exploreBtn)
+                .validateSearchSubmitBtnExists()
+                .validateInstantDiscountRegisterBtnExists()
+                .validateInstantDiscountSignInBtnExists()
+                .validateExploreBtnExists()
 
                 // Validate element color
-                .validateElementColor(homePage.searchSubmitBtn, SEARCH_BTN_COLOR_VAL)
-                .validateElementColor(homePage.instantDiscountRegisterBtn, INSTANT_DISCOUNT_LOG_AUTH_BTN_COLOR_VAL)
-                .validateElementColor(homePage.instantDiscountSignInBtn, INSTANT_DISCOUNT_LOG_AUTH_BTN_COLOR_VAL)
+                .validateSearchSubmitBtnColor()
+                .validateInstantDiscountRegisterBtnColor()
+                .validateInstantDiscountSignInBtnColor()
 
-                // Validate Element color change while hovering
-                .validateHoverEffectColorChange(headerSection.registerBtn)
-                .validateHoverEffectColorChange(headerSection.loginBtn)
-                .validateHoverEffectColorChange(homePage.searchSubmitBtn)
-                .validateHoverEffectColorChange(homePage.exploreBtn)
-                .validateHoverEffectColorChange(homePage.instantDiscountSignInBtn)
-                .validateHoverEffectColorChange(homePage.instantDiscountRegisterBtn);
+                // Validate element color change while hovering
+                .validateHoverEffectColorChangeSearchSubmitBtn()
+                .validateHoverEffectColorChangeExploreBtn()
+                .validateHoverEffectColorChangeInstantDiscountSignInBtn()
+                .validateHoverEffectColorChangeInstantDiscountRegisterBtn();
     }
 
     @Severity(SeverityLevel.MINOR)
@@ -103,30 +105,31 @@ public class UITests extends ConfigTests {
     @Test(description = "Validate UI elements on MainPage", priority = 4)
     public void flightPageTests() {
         headerSectionSteps
-                .navigateToFlightPage()
+                .navigateToFlightPage();
+        flightsPageSteps
                 // Validate element existence
-                .validateIfElementExists(flightsPage.formSection)
-                .validateIfElementExists(flightsPage.destinationFrom)
-                .validateIfElementExists(flightsPage.switchDestinationsButton)
-                .validateIfElementExists(flightsPage.destinationTo)
-                .validateIfElementExists(flightsPage.datesField)
-                .validateIfElementExists(flightsPage.submitButton)
-                .validateIfElementExists(flightsPage.languageBtn)
-                .validateIfElementExists(flightsPage.currencyBtn)
+                .validateFormSectionExists()
+                .validateDestinationFromExists()
+                .validateSwitchDestinationsButtonExists()
+                .validateDestinationToExists()
+                .validateDatesFieldExists()
+                .validateSubmitButtonExists()
+                .validateLanguageButtonExists()
+                .validateCurrencyButtonExists()
 
                 // Validate element color
-                .validateElementColor(flightsPage.headerBackground, HEADER_BACKGROUND_COLOR)
-                .validateElementColor(flightsPage.submitBtnColor, SUBMIT_BUTTON_COLOR)
-                .validateElementColor(flightsPage.backgroundDiv, BACKGROUND_DIV_COLOR)
+                .validateHeaderBackgroundColor()
+                .validateSubmitButtonColor()
+                .validateBackgroundDivColor()
 
                 // Validate element text
-                .validateElementText(flightsPage.flightsTitle, FLIGHTS_TITLE_TEXT)
-                .validateElementText(flightsPage.submitButtonText, SUBMIT_BUTTON_TEXT)
-                .validateElementText(flightsPage.originPlace, ORIGIN_PLACE_TEXT)
+                .validateFlightsTitleText()
+                .validateSubmitButtonText()
+                .validateOriginPlaceText()
 
                 // Validate element values
-                .validateElementValue(flightsPage.destinationFromText, ATTRIBUTE_PLACEHOLDER, DESTINATION_FROM_PLACEHOLDER)
-                .validateElementValue(flightsPage.destinationInput, ATTRIBUTE_PLACEHOLDER, DESTINATION_TO_PLACEHOLDER);
+                .validateDestinationFromPlaceholder()
+                .validateDestinationToPlaceholder();
     }
 
     @Severity(SeverityLevel.MINOR)
@@ -136,27 +139,28 @@ public class UITests extends ConfigTests {
     @Test(description = "Validate UI elements on Car Rental Page", priority = 5)
     public void carRentalPageTests() {
         headerSectionSteps
-                .navigateToCarRentalPage()
+                .navigateToCarRentalPage();
+        carRentalPageSteps
                 // Validate element existence
-                .validateIfElementExists(carRentalPage.pickUpLocationDiv)
-                .validateIfElementExists(carRentalPage.pickUpDateButton)
-                .validateIfElementExists(carRentalPage.pickUpDateSelect)
-                .validateIfElementExists(carRentalPage.dropOffDate)
-                .validateIfElementExists(carRentalPage.dropOffTime)
-                .validateIfElementExists(carRentalPage.searchButton)
-                .validateIfElementExists(carRentalPage.supplierList)
-                .validateIfElementExists(carRentalPage.faqsList)
-                .validateIfElementExists(carRentalPage.footer)
-                .validateIfElementExists(carRentalPage.footerTopMenu)
+                .validatePickUpLocationDivExists()
+                .validatePickUpDateButtonExists()
+                .validatePickUpDateSelectExists()
+                .validateDropOffDateExists()
+                .validateDropOffTimeExists()
+                .validateSearchButtonExists()
+                .validateSupplierListExists()
+                .validateFaqsListExists()
+                .validateFooterExists()
+                .validateFooterTopMenuExists()
 
                 // Validate element color
-                .validateElementColor(carRentalPage.pickUpDateButton, PICKUP_BTN_CLR)
+                .validatePickUpDateButtonColor()
 
                 // Validate element text
-                .validateElementText(carRentalPage.carRentalHeader, CAR_RENTAL_HEADER_TEXT)
-                .validateElementText(carRentalPage.searchButton, SEARCH_BUTTON_TEXT)
+                .validateCarRentalHeaderText()
+                .validateSearchButtonText()
 
                 // Validate element values
-                .validateElementValue(carRentalPage.pickupLocationTxt, ATTRIBUTE_FOR, PICK_UP_LOCATION_VAL);
+                .validatePickUpLocationTextValue();
     }
 }
