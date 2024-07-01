@@ -8,7 +8,7 @@ import org.testng.asserts.SoftAssert;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.Selenide.open;
-import static ge.tbc.tbcacademy.data.Constants.BOOKING_URL;
+import static ge.tbc.tbcacademy.data.constants.Constants.BOOKING_URL;
 import static ge.tbc.tbcacademy.data.JSScripts.REMOVE_DIALOG_ELEMENT_SCRIPT;
 import static ge.tbc.tbcacademy.data.JSScripts.SMOOTH_SCROLL_TO_ELEMENT_SCRIPT;
 import static ge.tbc.tbcacademy.utils.Util.getPseudoElementStyle;
@@ -68,6 +68,15 @@ public class HelperSteps<T> {
     @Step("Validate if Element has proper Text. {1}")
     public T validateElementText(SelenideElement element, String expectedText) {
         element.shouldHave(text(expectedText));
+        return (T) this;
+    }
+
+    @Step("Validate if Element has one of the expected texts.")
+    public T validateElementTextAnyOf(SelenideElement element, String firstExpectedText, String secondExpectedText) {
+        element.shouldHave(anyOf(
+                text(firstExpectedText),
+                text(secondExpectedText)
+        ));
         return (T) this;
     }
 

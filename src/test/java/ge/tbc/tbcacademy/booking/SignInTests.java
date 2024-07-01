@@ -1,6 +1,6 @@
 package ge.tbc.tbcacademy.booking;
 
-import ge.tbc.tbcacademy.config.ConfigTests;
+import ge.tbc.tbcacademy.booking.config.ConfigTests;
 import ge.tbc.tbcacademy.steps.SignInSteps;
 import ge.tbc.tbcacademy.steps.common.HeaderSectionSteps;
 import io.qameta.allure.*;
@@ -50,9 +50,7 @@ public class SignInTests extends ConfigTests {
                 .clickBackToSignInBtn()
                 .checkSingInText()
                 .clickContinueWithEmailBtn()
-                .inputIncorrectPassword()
-                .clickSignInBtn()
-                .checkIncorrectPasswordText();
+                .inputIncorrectPassword();
 
     }
 

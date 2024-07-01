@@ -4,7 +4,7 @@ import ge.tbc.tbcacademy.data.models.ApiResponse;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 
-import static ge.tbc.tbcacademy.data.LanguageConstants.LANGUAGE_CODE_IS_NOT_SAME;
+import static ge.tbc.tbcacademy.data.constants.LanguageConstants.LANGUAGE_CODE_IS_NOT_SAME;
 import static ge.tbc.tbcacademy.data.specBuilders.requestSpecs.detectLanguageRequestSpec;
 import static io.restassured.RestAssured.given;
 

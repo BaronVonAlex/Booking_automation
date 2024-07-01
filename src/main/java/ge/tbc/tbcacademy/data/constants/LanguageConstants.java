@@ -1,4 +1,4 @@
-package ge.tbc.tbcacademy.data;
+package ge.tbc.tbcacademy.data.constants;
 
 public class LanguageConstants {
 

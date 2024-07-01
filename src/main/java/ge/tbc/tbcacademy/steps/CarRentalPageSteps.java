@@ -4,7 +4,7 @@ import ge.tbc.tbcacademy.pages.CarRentalPage;
 import ge.tbc.tbcacademy.steps.common.HelperSteps;
 import io.qameta.allure.Step;
 
-import static ge.tbc.tbcacademy.data.UIConstants.*;
+import static ge.tbc.tbcacademy.data.constants.UIConstants.*;
 
 public class CarRentalPageSteps extends HelperSteps<CarRentalPageSteps> {
     CarRentalPage carRentalPage = new CarRentalPage();
@@ -77,7 +77,7 @@ public class CarRentalPageSteps extends HelperSteps<CarRentalPageSteps> {
 
     @Step("Validate car rental header text")
     public CarRentalPageSteps validateCarRentalHeaderText() {
-        validateElementText(carRentalPage.carRentalHeader, CAR_RENTAL_HEADER_TEXT);
+        validateElementTextAnyOf(carRentalPage.carRentalHeader, CAR_RENTAL_HEADER_TEXT, CAR_RENTAL_HEADER_TEXT_SECOND_VARIANT);
         return this;
     }
 

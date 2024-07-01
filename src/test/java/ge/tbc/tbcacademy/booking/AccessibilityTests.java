@@ -1,6 +1,6 @@
 package ge.tbc.tbcacademy.booking;
 
-import ge.tbc.tbcacademy.config.ConfigTests;
+import ge.tbc.tbcacademy.booking.config.ConfigTests;
 import ge.tbc.tbcacademy.steps.axeCore.AxeCoreSteps;
 import io.qameta.allure.*;
 import org.testng.annotations.BeforeClass;

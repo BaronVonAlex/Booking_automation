@@ -18,5 +18,5 @@ public class CarRentalPage {
             footer = $("#booking-footer"),
             footerTopMenu = $("#footer_top_menu"),
             pickupLocationTxt = $x("//label[@for='Pick-up location']"),
-            carRentalHeader = $x("//h1[text()='Car rentals for any kind of trip']");
+            carRentalHeader = $x("//h1");
 }

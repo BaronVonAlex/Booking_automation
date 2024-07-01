@@ -4,8 +4,8 @@ import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 
-import static ge.tbc.tbcacademy.data.LanguageConstants.DETECT_LANGUAGE_API;
-import static ge.tbc.tbcacademy.data.LanguageConstants.DETECT_LANGUAGE_API_KEY;
+import static ge.tbc.tbcacademy.data.constants.LanguageConstants.DETECT_LANGUAGE_API;
+import static ge.tbc.tbcacademy.data.constants.LanguageConstants.DETECT_LANGUAGE_API_KEY;
 
 public class requestSpecs {
     public static RequestSpecification detectLanguageRequestSpec() {

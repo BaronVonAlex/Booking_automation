@@ -187,4 +187,14 @@ public class Util {
         return IntStream.range(1, list.size())
                 .allMatch(i -> list.get(i) >= list.get(i - 1));
     }
+
+    /**
+     * Checks if the current operating system is macOS.
+     *
+     * @return true if the OS is macOS, false otherwise.
+     */
+    public static boolean isMacOS() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        return osName.contains("mac");
+    }
 }

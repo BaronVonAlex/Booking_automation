@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
@@ -20,7 +21,9 @@ public class KayakPageSteps extends HelperSteps<KayakPageSteps> {
 
     @Step("Scroll to and check the 'Airlines Only' checkbox to filter results")
     public KayakPageSteps checkAirlinesOnlyCheckBox() {
-        scrollToElementUsingJavascript(kayakPage.airlinesOnlyCheckBox);
+        if(kayakPage.airlinesOnlyCheckBox.is(not(visible))){
+            scrollToElementUsingJavascript(kayakPage.airlinesOnlyCheckBox);
+        }
         executeJavaScript("arguments[0].click();", kayakPage.airlinesOnlyCheckBox);
         return this;
     }

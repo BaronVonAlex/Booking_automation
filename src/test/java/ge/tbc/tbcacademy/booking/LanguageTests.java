@@ -1,6 +1,6 @@
 package ge.tbc.tbcacademy.booking;
 
-import ge.tbc.tbcacademy.config.ConfigTests;
+import ge.tbc.tbcacademy.booking.config.ConfigTests;
 import ge.tbc.tbcacademy.data.dataproviders.LanguageDataProvider;
 import ge.tbc.tbcacademy.steps.MainPageSteps;
 import ge.tbc.tbcacademy.steps.common.HeaderSectionSteps;
