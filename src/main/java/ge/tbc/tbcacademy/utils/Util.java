@@ -1,9 +1,12 @@
 package ge.tbc.tbcacademy.utils;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.google.common.collect.Ordering;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import ge.tbc.tbcacademy.data.constants.FilterConstants;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.Color;
 
@@ -12,10 +15,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.format.TextStyle;
 import java.util.*;
 import java.util.stream.IntStream;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.webdriver;
 
 public class Util {
@@ -196,5 +202,103 @@ public class Util {
     public static boolean isMacOS() {
         String osName = System.getProperty("os.name").toLowerCase();
         return osName.contains("mac");
+    }
+
+    /**
+     * Convert distance text into double
+     **/
+    public static double convertToMeter(String distanceTxt) {
+        String[] parts = distanceTxt.split(" ");
+        double distance = 0;
+        double val = Double.parseDouble(parts[0]);
+        if (parts[1].equals("km")) {
+            distance = val * 1000;
+        } else if (parts[1].equals("m")) {
+            distance = val;
+        } else {
+            throw new IllegalArgumentException("Unexpected unit: " + parts[1]);
+        }
+
+        return distance;
+    }
+
+    /**
+     * return boolean corresponding to the sorted ascending status of the list
+     **/
+    public static boolean isSortedDoubles(List<Double> list) {
+        return Ordering.natural().isOrdered(list);
+    }
+
+    /**
+     * Take out integer from string
+     **/
+    public static int takeOutIntegersFromStirng(String text) {
+        return Integer.parseInt(text.replaceAll("[^0-9]", ""));
+    }
+
+    /**
+     * Parse String to double
+     **/
+    public static Double parceStringToDouble(String ownText) {
+        try {
+
+            return Double.parseDouble(ownText.replaceAll("[^0-9.]",""));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Unexpected text: " + ownText);
+        }
+    }
+
+    /**
+     * retrieve scores with score selector from property element list
+     **/
+    public static List<Double> getListOfScores(ElementsCollection collection, String selector) {
+        List<Double> scores = new ArrayList<>();
+        try {
+            for (SelenideElement d : collection) {
+                SelenideElement p = d.$(selector);
+                if(!p.exists()){
+                    p = d.$(FilterConstants.REVIE_SCORE_SELECTOR_EXTERNAL);
+                }
+                scores.add(Util.parceStringToDouble(p.should(exist).scrollTo().getOwnText()));
+            }
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new RuntimeException("Website froze, sorry :((");
+        }
+        return scores;
+    }
+
+    /**
+     * Parse String to date
+     **/
+    public static LocalDate parseStringToDate(String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        try {
+            LocalDate date = LocalDate.parse(dateString, formatter);
+            System.out.println("Converted LocalDate: " + date);
+            return date;
+        } catch (DateTimeParseException e) {
+            throw new RuntimeException("Invalid date format: " + dateString + " should be dd-MM-yyyy");
+        }
+    }
+
+    /**
+     * count number of occurrences of an element inside an element
+     **/
+    public static int countStars(SelenideElement d, String locator) {
+        return d.$$(locator).size();
+    }
+
+    /**
+     * Retrieve price of property from the property list
+     **/
+    public static List<Integer> gerPropertyPrice(ElementsCollection props, String propertyPriceSelector) {
+        List<Integer> prices = new ArrayList<>();
+        for (SelenideElement prop : props) {
+            prop.scrollTo();
+            String priceText = prop.$(propertyPriceSelector).getText();
+            prices.add(Util.takeOutIntegersFromStirng(priceText));
+        }
+        return prices;
     }
 }
