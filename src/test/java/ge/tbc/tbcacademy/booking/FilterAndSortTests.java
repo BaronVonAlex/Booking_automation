@@ -31,7 +31,7 @@ public class FilterAndSortTests extends ConfigTests {
 
     @BeforeMethod(description = "Open browser and go to navigated page")
     public void launchBrowser() {
-        open(URL);
+       filterAndSort.openWebPage(URL);
         Configuration.timeout = 5000;
     }
 

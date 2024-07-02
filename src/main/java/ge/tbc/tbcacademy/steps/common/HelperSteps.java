@@ -24,6 +24,13 @@ public class HelperSteps<T> {
         return (T) this;
     }
 
+    @Step("Open url {0}.")
+    public T openWebPage(String url) {
+        open(url);
+
+        return (T) this;
+    }
+
     @Step("Close Login/Register Prompt Popup.")
     public T closeSignInPopUp() {
         executeJavaScript(REMOVE_DIALOG_ELEMENT_SCRIPT);

@@ -1,23 +1,29 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Booking Suite">
     <test name="Chrome Tests">
-        <parameter name="browser" value="chrome" />
-        <classes>
-            <class name="ge.tbc.tbcacademy.booking.RegistrationTests" />
-        </classes>
+        <parameter name="browser" value="chrome"/>
+        <packages>
+            <package name="ge.tbc.tbcacademy.booking">
+                <exclude name="ge.tbc.tbcacademy.booking.FilterAndSortTests"></exclude>
+            </package>
+        </packages>
     </test>
 
     <test name="Firefox Tests">
-        <parameter name="browser" value="firefox" />
-        <classes>
-            <class name="ge.tbc.tbcacademy.booking.RegistrationTests" />
-        </classes>
+        <parameter name="browser" value="firefox"/>
+        <packages>
+            <package name="ge.tbc.tbcacademy.booking">
+                <exclude name="ge.tbc.tbcacademy.booking.FilterAndSortTests"></exclude>
+            </package>
+        </packages>
     </test>
 
     <test name="Edge Tests">
-        <parameter name="browser" value="edge" />
-        <classes>
-            <class name="ge.tbc.tbcacademy.booking.RegistrationTests" />
-        </classes>
+        <parameter name="browser" value="edge"/>
+        <packages>
+            <package name="ge.tbc.tbcacademy.booking">
+                <exclude name="ge.tbc.tbcacademy.booking.FilterAndSortTests"></exclude>
+            </package>
+        </packages>
     </test>
 </suite>
