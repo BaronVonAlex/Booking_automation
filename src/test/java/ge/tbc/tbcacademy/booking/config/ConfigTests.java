@@ -3,6 +3,7 @@ package ge.tbc.tbcacademy.booking.config;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.testng.SoftAsserts;
+import ge.tbc.tbcacademy.listeners.AllureScreenshotListener;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,7 +18,7 @@ import static com.codeborne.selenide.AssertionMode.SOFT;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static ge.tbc.tbcacademy.data.constants.Constants.INVALID_BROWSER_PARAMETER_MESSAGE;
 
-@Listeners({SoftAsserts.class})
+@Listeners({SoftAsserts.class, AllureScreenshotListener.class})
 public class ConfigTests {
     WebDriver driver;
 
