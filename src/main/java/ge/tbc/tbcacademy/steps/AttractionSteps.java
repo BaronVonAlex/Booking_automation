@@ -2,7 +2,6 @@ package ge.tbc.tbcacademy.steps;
 
 import com.codeborne.selenide.SelenideElement;
 import ge.tbc.tbcacademy.pages.AttractionsPage;
-import ge.tbc.tbcacademy.pages.common.HeaderSection;
 import ge.tbc.tbcacademy.steps.common.HelperSteps;
 import io.qameta.allure.Step;
 
@@ -58,7 +57,7 @@ public class AttractionSteps extends HelperSteps<AttractionSteps> {
         return this;
     }
 
-
+    @Step("Check all have same location {0}")
     public void allAttractionsShouldContainDest(String dest) {
         for(SelenideElement p : attractionsPage.products){
             p.scrollTo();

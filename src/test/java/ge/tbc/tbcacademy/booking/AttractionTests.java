@@ -1,9 +1,7 @@
 package ge.tbc.tbcacademy.booking;
 
-import com.beust.ah.A;
 import ge.tbc.tbcacademy.booking.config.ConfigTests;
 import ge.tbc.tbcacademy.steps.AttractionSteps;
-import ge.tbc.tbcacademy.steps.common.HelperSteps;
 import org.testng.annotations.Test;
 
 public class AttractionTests extends ConfigTests {
