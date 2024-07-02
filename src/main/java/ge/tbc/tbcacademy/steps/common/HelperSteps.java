@@ -8,9 +8,9 @@ import org.testng.asserts.SoftAssert;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.Selenide.open;
-import static ge.tbc.tbcacademy.data.constants.Constants.BOOKING_URL;
 import static ge.tbc.tbcacademy.data.JSScripts.REMOVE_DIALOG_ELEMENT_SCRIPT;
 import static ge.tbc.tbcacademy.data.JSScripts.SMOOTH_SCROLL_TO_ELEMENT_SCRIPT;
+import static ge.tbc.tbcacademy.data.constants.Constants.BOOKING_URL;
 import static ge.tbc.tbcacademy.utils.Util.getPseudoElementStyle;
 
 public class HelperSteps<T> {
