@@ -27,6 +27,6 @@ public class FlightsPage {
             originPlace = $(".c_neb-item-value"),
             firstDestinationSuggestion = $x("//li[@role='option']"),
             searchButton = $x("//button[@type = 'submit']"),
-            returnDropDown = $x("//div/span[text()='Return']"),
+            returnDropDown = $x("//div/span[text()='Return' or text()='Round-trip']"),
             oneWayOption = $x("//li[@aria-label='One-way']");
 }
