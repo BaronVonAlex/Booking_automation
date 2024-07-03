@@ -9,12 +9,12 @@ import static com.codeborne.selenide.Selenide.$x;
 public class SignInPage {
     public SelenideElement
             singInPageText = $x("//h1[text()='Sign in or create an account']"),
-            emailField = $x("//input[@type='email']"),
+            emailField = $("input[type=\"email\"]"),
             continueWithEmailBtn = $x("//button[.//span[text()='Continue with email']]"),
             emailAlert = $("#username-note"),
-            singInWithAppleBtn = $x("//a[@aria-label='Sign in with Apple']"),
-            singInWithFacebookBtn = $x("//a[@aria-label='Sign in with Facebook']"),
-            singInWithGoogleBtn = $x("//a[@aria-label='Sign in with Google']"),
+            singInWithAppleBtn = $("a[aria-label=\"Sign in with Apple\"]"),
+            singInWithFacebookBtn = $("a[aria-label=\"Sign in with Facebook\"]"),
+            singInWithGoogleBtn = $("a[aria-label=\"Sign in with Google\"]"),
             passwordField = $(".YyPS4CCyBc09wPIEDhf6"),
             signInButton = $x("//button[.//span[text()='Sign in']]"),
             incorrectPasswordText = $("#password-note"),

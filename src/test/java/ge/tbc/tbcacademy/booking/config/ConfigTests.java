@@ -5,7 +5,6 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.testng.SoftAsserts;
 import ge.tbc.tbcacademy.listeners.AllureScreenshotListener;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -55,7 +54,6 @@ public class ConfigTests {
                             "--enable-automation",
                             "--disable-extensions",
 //                            "--headless=new",
-
                             "--no-sandbox",
                             "--disable-dev-shm-usage",
                             "--window-size=1920,1080",
@@ -74,7 +72,6 @@ public class ConfigTests {
                             "--enable-automation",
                             "--disable-extensions",
 //                            "--headless",
-
                             "--no-sandbox",
                             "--disable-dev-shm-usage",
                             "--width=1920",
@@ -94,7 +91,6 @@ public class ConfigTests {
                             "--enable-automation",
                             "--disable-extensions",
 //                            "--headless",
-
                             "--no-sandbox",
                             "--disable-dev-shm-usage",
                             "--window-size=1920,1080",
