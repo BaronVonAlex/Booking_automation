@@ -3,20 +3,21 @@ package ge.tbc.tbcacademy.pages.common;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class HeaderSection {
     public SelenideElement
-            headerLogo = $x("//a[@data-testid='header-booking-logo']"),
-            headerBackground = $x("//div[@data-testid='web-shell-header-mfe']/header"),
-            bookingHomeHeader = $x("//a[@data-testid='header-booking-logo']"),
-            registerBtn = $x("//a[@data-testid='header-sign-up-button']"),
-            loginBtn = $x("//a[@data-testid='header-sign-in-button']"),
-            languageBtn = $x("//button[@data-testid='header-language-picker-trigger']"),
-            listPropertyBtn = $x("//a[@data-testid='header-custom-action-button']"),
-            customerSupportBtn = $x("//a[@data-testid='header-help-center']"),
-            changeLangBtn = $x("//button[@data-testid='header-language-picker-trigger']"),
-            changeCurrencyBtn = $x("//button[@data-testid='header-currency-picker-trigger']"),
+            headerLogo = $("a[data-testid=\"header-booking-logo\"]"),
+            headerBackground = $("div[data-testid=\"web-shell-header-mfe\"] > header "),
+            bookingHomeHeader = $("a[data-testid=\"header-booking-logo\"]"),
+            registerBtn = $("a[data-testid=\"header-sign-up-button\"]"),
+            loginBtn = $("a[data-testid=\"header-sign-in-button\"]"),
+            languageBtn = $("button[data-testid=\"header-language-picker-trigger\"]"),
+            listPropertyBtn = $("a[data-testid=\"header-custom-action-button\"]"),
+            customerSupportBtn = $("a[data-testid=\"header-help-center\"]"),
+            changeLangBtn = $("button[data-testid=\"header-language-picker-trigger\"]"),
+            changeCurrencyBtn = $("button[data-testid=\"header-currency-picker-trigger\"]"),
             flightsBtn = $("#flights"),
             carRentalBtn = $("#cars"),
             attractionsBtn = $("#attractions"),
@@ -24,6 +25,6 @@ public class HeaderSection {
             carRental = $("a[href='https://www.booking.com/cars.html']");
 
     public ElementsCollection
-            languages = $$x("//button[@data-testid='selection-item']"),
-            navbarItems = $$x("//div[@data-testid='web-shell-header-mfe']/header//li/a");
+            languages = $$("button[data-testid=\"selection-item\"]"),
+            navbarItems = $$("div[data-testid=\"web-shell-header-mfe\"] header li a ");
 }

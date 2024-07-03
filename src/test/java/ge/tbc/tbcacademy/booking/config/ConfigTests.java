@@ -53,7 +53,7 @@ public class ConfigTests {
                             "--javascript-enabled",
                             "--enable-automation",
                             "--disable-extensions",
-                            "--headless=new",
+//                            "--headless=new",
                             "--no-sandbox",
                             "--disable-dev-shm-usage",
                             "--window-size=1920,1080",
@@ -71,7 +71,7 @@ public class ConfigTests {
                             "--javascript-enabled",
                             "--enable-automation",
                             "--disable-extensions",
-                            "--headless",
+//                            "--headless",
                             "--no-sandbox",
                             "--disable-dev-shm-usage",
                             "--width=1920",
@@ -90,7 +90,7 @@ public class ConfigTests {
                             "--javascript-enabled",
                             "--enable-automation",
                             "--disable-extensions",
-                            "--headless",
+//                            "--headless",
                             "--no-sandbox",
                             "--disable-dev-shm-usage",
                             "--window-size=1920,1080",
@@ -105,7 +105,6 @@ public class ConfigTests {
             }
         }
         Configuration.assertionMode = SOFT;
-        Configuration.holdBrowserOpen = true;
         WebDriverRunner.setWebDriver(driver);
     }
 

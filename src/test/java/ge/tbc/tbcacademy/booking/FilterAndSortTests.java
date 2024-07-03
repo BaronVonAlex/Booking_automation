@@ -32,6 +32,7 @@ public class FilterAndSortTests extends ConfigTests {
     public void launchBrowser() {
         open(URL);
         Configuration.timeout = 5000;
+        filterAndSort.closeSignInPopUp();
     }
 
     @Feature("Filter Functional")

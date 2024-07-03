@@ -12,7 +12,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.not;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class KayakPageSteps extends HelperSteps<KayakPageSteps> {
@@ -51,7 +52,7 @@ public class KayakPageSteps extends HelperSteps<KayakPageSteps> {
 
     @Step("Wait for the search results container to load")
     public KayakPageSteps waitForComponentLoad() {
-        kayakPage.searchResultsContainer.should(exist);
+        kayakPage.searchResultsContainer.shouldBe(visible);
         return this;
     }
 
