@@ -2,6 +2,7 @@ package ge.tbc.tbcacademy.utils;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.github.javafaker.Faker;
 import com.google.common.collect.Ordering;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -25,6 +26,9 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.webdriver;
 
 public class Util {
+
+    private static final Faker faker = new Faker();
+
     /**
      * concatenated the date arts to whole date
      **/
@@ -242,7 +246,7 @@ public class Util {
     public static Double parceStringToDouble(String ownText) {
         try {
 
-            return Double.parseDouble(ownText.replaceAll("[^0-9.]",""));
+            return Double.parseDouble(ownText.replaceAll("[^0-9.]", ""));
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Unexpected text: " + ownText);
         }
@@ -256,7 +260,7 @@ public class Util {
         try {
             for (SelenideElement d : collection) {
                 SelenideElement p = d.$(selector);
-                if(!p.exists()){
+                if (!p.exists()) {
                     p = d.$(FilterConstants.REVIE_SCORE_SELECTOR_EXTERNAL);
                 }
                 scores.add(Util.parceStringToDouble(p.should(exist).scrollTo().getOwnText()));

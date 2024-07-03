@@ -25,7 +25,7 @@ public class HeaderSectionSteps extends HelperSteps<HeaderSectionSteps> {
     @Step("Click on language flag")
     public HeaderSectionSteps clickLanguageFlag() {
         headerSection.languageBtn.click();
-        if(headerSection.languages.get(0).is(not(visible))){
+        if (headerSection.languages.get(0).is(not(visible))) {
             headerSection.languageBtn.click();
         }
         return this;

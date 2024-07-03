@@ -21,9 +21,9 @@ public class RegistrationPageSteps extends HelperSteps<RegistrationPageSteps> {
 
     @Step("Clear Input Field before inputting Data {0}")
     public RegistrationPageSteps clearInputField(SelenideElement element) {
-        if (Util.isMacOS()){
+        if (Util.isMacOS()) {
             element.sendKeys(Keys.chord(Keys.COMMAND, "a", Keys.DELETE));
-        }else {
+        } else {
             element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         }
         return this;
@@ -36,7 +36,7 @@ public class RegistrationPageSteps extends HelperSteps<RegistrationPageSteps> {
     }
 
     @Step("Validate if Error Message shows up on Incorrectly put Mail.")
-    public RegistrationPageSteps getIncorrectMailMsg(){
+    public RegistrationPageSteps getIncorrectMailMsg() {
         registerPage.gmailErrorMessage.shouldHave(anyOf(
                 text(INVALID_MAIL_FORMAT_ERR_MSG_SECOND_VARIANT),
                 text(INVALID_MAIL_FORMAT_ERR_MSG)
@@ -67,12 +67,6 @@ public class RegistrationPageSteps extends HelperSteps<RegistrationPageSteps> {
         registerPage.confirmPasswordErrorMessage.shouldHave(anyOf(
                 text(PASSWORDS_DID_NOT_MATCH_ERR_MSG_SECOND_VARIANT),
                 text(PASSWORDS_DID_NOT_MATCH_ERR_MSG)));
-        return this;
-    }
-
-    @Step("Validate if Are you Robot Text is shown.")
-    public RegistrationPageSteps validateRobotActions() {
-        registerPage.areYouRobotText.shouldBe(visible);
         return this;
     }
 }

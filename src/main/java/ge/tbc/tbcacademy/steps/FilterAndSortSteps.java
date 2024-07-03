@@ -35,12 +35,14 @@ public class FilterAndSortSteps extends HelperSteps<FilterAndSortSteps> {
         resultsPage.searchResultPage.shouldBe(visible);
         return this;
     }
+
     @Step("Check Tat Results Are Present")
     public FilterAndSortSteps checkResultsArePresent() {
         resultsPage.noOffersFound.shouldNotBe(visible);
         resultsPage.properties.shouldHave(sizeGreaterThan(0));
         return this;
     }
+
     @Step("Click to open sort Dropdown")
     public FilterAndSortSteps clickOnSortDropdown() {
         resultsPage.sortDropdownBtn.shouldBe(visible).scrollTo()
@@ -48,6 +50,7 @@ public class FilterAndSortSteps extends HelperSteps<FilterAndSortSteps> {
         executeJavaScript("arguments[0].click();", resultsPage.sortDropdownBtn);
         return this;
     }
+
     @Step("choose {0} option from sort dropdown")
     public FilterAndSortSteps chooseOptionFromSortDropdown(String option) {
         resultsPage.sortDropdownOptions.shouldBe(visible);
@@ -55,11 +58,13 @@ public class FilterAndSortSteps extends HelperSteps<FilterAndSortSteps> {
                 .shouldBe(allOf(visible, clickable)).click();
         return this;
     }
+
     @Step("Make sure correct option {0} was chosen in sort ")
     public FilterAndSortSteps checkCorrectOptionInChosen(String option) {
         resultsPage.sortDropdownBtn.shouldHave(innerText(option));
         return this;
     }
+
     @Step("Choose minimum price per day with slider {0}")
     public FilterAndSortSteps setMinPricePerDay(String minPrice) {
 //        System.out.println(resultsPage.minPricePerDay.getAttribute("step"));
@@ -73,11 +78,12 @@ public class FilterAndSortSteps extends HelperSteps<FilterAndSortSteps> {
 
         return this;
     }
+
     @Step("Choose maximum price per day with slider {0}")
     public FilterAndSortSteps setMaxPricePerDay(String maxPrice) {
 //        System.out.println(resultsPage.maxPricePerDay.getAttribute("step"));
 //        System.out.println(resultsPage.maxPricePerDay.getValue());
-        while (!resultsPage.maxPricePerDay.getValue().toString().equals(maxPrice)) {
+        while (!resultsPage.maxPricePerDay.getValue().equals(maxPrice)) {
             System.out.println(resultsPage.maxPricePerDay.getValue());
             actions().clickAndHold(resultsPage.maxPriceSlider)
                     .moveByOffset(-10, 0).click().perform();
@@ -86,6 +92,7 @@ public class FilterAndSortSteps extends HelperSteps<FilterAndSortSteps> {
 
         return this;
     }
+
     @Step("Chose meal options {0}")
     public FilterAndSortSteps chooseMealPlan(String plan) {
         resultsPage.mealPlanContainer.should(appear).scrollTo();
@@ -100,6 +107,7 @@ public class FilterAndSortSteps extends HelperSteps<FilterAndSortSteps> {
         executeJavaScript("arguments[0].checked = true;", box.parent());
         return this;
     }
+
     @Step("Check filter has option {0} ")
     public FilterAndSortSteps checkThatOffersContain(String option) {
         for (SelenideElement offer : resultsPage.properties) {
@@ -108,11 +116,13 @@ public class FilterAndSortSteps extends HelperSteps<FilterAndSortSteps> {
         }
         return this;
     }
+
     @Step("Check filter was selected")
     public FilterAndSortSteps checkFilterIsSelectedNearSortDropdown() {
         resultsPage.chosenFilters.shouldHave(sizeGreaterThan(0));
         return this;
     }
+
     @Step("Make sure results are filtered by loader's appearance")
     public FilterAndSortSteps loaderAppeared() {
         resultsPage.loader.should(appear);
@@ -121,11 +131,13 @@ public class FilterAndSortSteps extends HelperSteps<FilterAndSortSteps> {
         }
         return this;
     }
+
     @Step("Make sure filtering process is done by loader's disappearance")
     public FilterAndSortSteps loaderDisappeared() {
         resultsPage.loader.should(disappear);
         return this;
     }
+
     @Step("Make sure sort options dropdown was open after clicking on it")
     public FilterAndSortSteps checkDropdownIsOpen() {
         resultsPage.sortDropdownOptions.shouldBe(visible);
@@ -145,6 +157,7 @@ public class FilterAndSortSteps extends HelperSteps<FilterAndSortSteps> {
             throw new RuntimeException(FilterConstants.FOROZE_MSG);
         }
     }
+
     @Step("Make sure offers reopen by star rating")
     public boolean areSortedByRating() {
         //[data-testid="rating-stars"] svg
@@ -156,12 +169,14 @@ public class FilterAndSortSteps extends HelperSteps<FilterAndSortSteps> {
         System.out.println(ratings);
         return Util.isSorted(ratings);
     }
+
     @Step("Check offers are sorted via Price ascending order")
     public boolean priceIsSorted() {
         List<Integer> prices = Util.gerPropertyPrice(resultsPage.properties, FilterConstants.PROPERTY_PRICE_SELECTOR);
 
         return Util.isSorted(prices);
     }
+
     @Step("Check offers are sorted via review score ascending order")
     public boolean isSortedByReview() {
         Allure.addAttachment("Text Attachment", "text/plain", Util.getListOfScores(resultsPage.properties, FilterConstants.REVIE_SCORE_SELECTOR).toString());
@@ -183,6 +198,7 @@ public class FilterAndSortSteps extends HelperSteps<FilterAndSortSteps> {
 
         return isSorted;
     }
+
     @Step("Make sure prices are in range of {0} - {1}")
     public boolean pricesAreInPriceRange(String min, String max, int numberOfDays) {
         int minPrice = Util.parseStringToInt(min) / numberOfDays;

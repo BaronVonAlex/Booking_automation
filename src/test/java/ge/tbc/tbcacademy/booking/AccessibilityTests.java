@@ -27,5 +27,4 @@ public class AccessibilityTests extends ConfigTests {
                 .getAxeCoreAccessibilityAuditResults()
                 .generateReportFromJsonResults();
     }
-
 }

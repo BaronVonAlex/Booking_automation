@@ -35,7 +35,7 @@ public class SignInConstants {
      */
     public static final String
             INCORRECT_EMAIL = "Rawdgmail.com",
-            CORRECT_EMAIL = "rnggmailgen@gmail.com",
+            CORRECT_EMAIL = "jgeneratedgmail2@gmail.com",
             INCORRECT_PASSWORD = "QweQwePass",
             CORRECT_PASSWORD = "passwordgen332A";
 }

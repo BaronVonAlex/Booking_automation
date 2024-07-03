@@ -12,37 +12,41 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class AttractionSteps extends HelperSteps<AttractionSteps> {
     AttractionsPage attractionsPage = new AttractionsPage();
+
     @Step("Navigate To Attraction Page")
-    public AttractionSteps goToAttractions(){
+    public AttractionSteps goToAttractions() {
         attractionsPage.attractionsBtn.should(appear)
                 .shouldBe(clickable).click();
         return this;
     }
+
     @Step("Page Is Laded")
-    public AttractionSteps checkPageIsLoaded(){
+    public AttractionSteps checkPageIsLoaded() {
         attractionsPage.registerBtn.should(appear);
         return this;
     }
+
     @Step("Page Is Laded")
-    public AttractionSteps checkResultsAreReady(){
+    public AttractionSteps checkResultsAreReady() {
         attractionsPage.products.shouldHave(sizeGreaterThan(0));
         return this;
     }
 
     @Step("CLick On destination Search input")
-    public AttractionSteps clickOnDestinatoinInput(){
+    public AttractionSteps clickOnDestinatoinInput() {
         attractionsPage.destinationSearchInput.should(exist)
                 .shouldBe(visible).shouldBe(clickable).scrollTo().click();
         return this;
     }
+
     @Step("type in input {0}")
-    public AttractionSteps enterInput(String dest){
+    public AttractionSteps enterInput(String dest) {
         attractionsPage.destinationSearchInput.sendKeys(dest);
         return this;
     }
 
     @Step("Select Locstion with text {0}")
-    public AttractionSteps selectOption(String dest){
+    public AttractionSteps selectOption(String dest) {
         attractionsPage.selectLocatoinOption(dest).shouldBe(visible);
         executeJavaScript("arguments[0].click();", attractionsPage.selectLocatoinOption(dest));
 
@@ -50,7 +54,7 @@ public class AttractionSteps extends HelperSteps<AttractionSteps> {
     }
 
     @Step("click on search")
-    public AttractionSteps clickOnSearch(){
+    public AttractionSteps clickOnSearch() {
         attractionsPage.searchBtn.shouldBe(visible).shouldBe(clickable).hover();
         executeJavaScript("arguments[0].click();", attractionsPage.searchBtn);
 
@@ -59,7 +63,7 @@ public class AttractionSteps extends HelperSteps<AttractionSteps> {
 
     @Step("Check all have same location {0}")
     public void allAttractionsShouldContainDest(String dest) {
-        for(SelenideElement p : attractionsPage.products){
+        for (SelenideElement p : attractionsPage.products) {
             p.scrollTo();
             p.$(withText(dest)).should(exist);
         }
