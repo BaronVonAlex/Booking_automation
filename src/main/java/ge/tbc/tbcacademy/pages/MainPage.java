@@ -2,11 +2,10 @@ package ge.tbc.tbcacademy.pages;
 
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.$;
 
 public class MainPage {
     public SelenideElement
-            closeSignInButton = $x("//button[@aria-label=\"Dismiss sign-in info.\"]"),
-            mainHeader = $x("//header//h1"),
-            headerSubTitle = $x("//p[@data-testid='herobanner-subtitile']");
+            mainHeader = $("header h1"),
+            headerSubTitle = $("p[data-testid=\"herobanner-subtitile\"]");
 }

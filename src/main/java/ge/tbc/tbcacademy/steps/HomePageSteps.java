@@ -11,7 +11,7 @@ public class HomePageSteps extends HelperSteps<HomePageSteps> {
 
     @Step("Validate that Account was created.")
     public HomePageSteps validateIfAccountWasCreated() {
-        homePage.welcomeUserPopupMsg.should(exist);
+        homePage.userAccount.should(exist);
         return this;
     }
 

@@ -7,7 +7,8 @@ import ge.tbc.tbcacademy.utils.Util;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.anyOf;
+import static com.codeborne.selenide.Condition.text;
 import static ge.tbc.tbcacademy.data.constants.RegistrationConstants.*;
 
 public class RegistrationPageSteps extends HelperSteps<RegistrationPageSteps> {
