@@ -34,7 +34,6 @@ public class FilterAndSortTests extends ConfigTests {
        filterAndSort.openWebPage(URL)
                .closeSignInPopUp();
         Configuration.timeout = 5000;
-        filterAndSort.closeSignInPopUp();
     }
 
     @Feature("Filter Functional")
@@ -213,7 +212,6 @@ public class FilterAndSortTests extends ConfigTests {
     @AfterMethod(alwaysRun = true, description = "close browser")
     public void teardown() {
         if( WebDriverRunner.getWebDriver().getWindowHandles().size() > 1){
-
             Selenide.closeWindow();
         }
     }

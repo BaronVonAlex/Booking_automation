@@ -32,7 +32,8 @@ public class FilterResultsPage {
             mealPlanContainer = elementsConstraint.$("[id^=\"filter_group_mealplan_\"]"),
             footer = $("#footer_menu_track");
 
-    public ElementsCollection properties = elementsConstraint.$$("[aria-label=\"Property\"]"),
+    public ElementsCollection
+            properties = elementsConstraint.$$("[aria-label=\"Property\"]"),
             offersAvailability = elementsConstraint.$$("[data-testid=\"availability-single\"]"),
             chosenFilters = $$("[data-testid^=\"filter:\"]"),
             distances = $$("[data-testid=\"distance\"]");

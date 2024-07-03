@@ -38,8 +38,9 @@ public class StaysPage {
             searchResult = $x("//div[text()=\"Search results\"]"),
             moreResultsBtn = $x("//*[text()='Load more results']/..");
     public ElementsCollection
+            propertyContainer = $$("[aria-label=\"Property\"]"),
             properties = $$("[data-testid=\"property-card\"]"),
-            offerLocations = $$("[data-testid=\"address\"]"),
+            offerLocations = $$("span[data-testid=\"address\"]"),
             occupancyConfigs = $$("[data-testid=\"price-for-x-nights\"]");
     public ElementsCollection destinationDropdown = $$("[data-testid=\"autocomplete-results-options\"] [id*='autocomplete-result']");
 
