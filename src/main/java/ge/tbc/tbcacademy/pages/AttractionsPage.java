@@ -12,6 +12,7 @@ public class AttractionsPage extends HeaderSection {
     public SelenideElement destinationSearchInput = $("[name=\"query\"]"),
             searchBtn = $("button[type=\"submit\"]");
     public ElementsCollection products = $$("[aria-label=\"Product\"]");
+
     public SelenideElement selectLocatoinOption(String loc) {
         return $("div").find(withTextCaseInsensitive(loc));
     }

@@ -20,7 +20,7 @@ public class KayakPageSteps extends HelperSteps<KayakPageSteps> {
 
     @Step("Scroll to and check the 'Airlines Only' checkbox to filter results")
     public KayakPageSteps checkAirlinesOnlyCheckBox() {
-        if(kayakPage.airlinesOnlyCheckBox.is(not(visible))){
+        if (kayakPage.airlinesOnlyCheckBox.is(not(visible))) {
             scrollToElementUsingJavascript(kayakPage.airlinesOnlyCheckBox);
         }
         executeJavaScript("arguments[0].click();", kayakPage.airlinesOnlyCheckBox);

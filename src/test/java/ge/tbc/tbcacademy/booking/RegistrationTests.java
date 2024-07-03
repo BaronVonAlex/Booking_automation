@@ -4,6 +4,7 @@ import com.codeborne.selenide.Selenide;
 import ge.tbc.tbcacademy.booking.config.ConfigTests;
 import ge.tbc.tbcacademy.data.dataproviders.invalidPasswordDataProvide;
 import ge.tbc.tbcacademy.pages.RegisterPage;
+import ge.tbc.tbcacademy.steps.HomePageSteps;
 import ge.tbc.tbcacademy.steps.RegistrationPageSteps;
 import ge.tbc.tbcacademy.steps.common.HeaderSectionSteps;
 import io.qameta.allure.*;
@@ -12,12 +13,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static ge.tbc.tbcacademy.data.RandomCredentials.*;
-import static ge.tbc.tbcacademy.data.constants.RegistrationConstants.*;
+import static ge.tbc.tbcacademy.data.constants.RegistrationConstants.INVALID_MAIL_FORMAT;
 
 @Epic("User Registration")
 public class RegistrationTests extends ConfigTests {
     protected static HeaderSectionSteps headerSectionSteps;
     protected static RegistrationPageSteps registrationPageSteps;
+    protected static HomePageSteps homePageSteps;
     protected static RegisterPage registerPage;
 
     @BeforeClass
@@ -25,6 +27,7 @@ public class RegistrationTests extends ConfigTests {
         headerSectionSteps = new HeaderSectionSteps();
         registrationPageSteps = new RegistrationPageSteps();
         registerPage = new RegisterPage();
+        homePageSteps = new HomePageSteps();
 
         registrationPageSteps.openBookingWebPage();
     }
@@ -66,9 +69,9 @@ public class RegistrationTests extends ConfigTests {
 
     @Severity(SeverityLevel.CRITICAL)
     @Feature("User Registration")
-    @Story("Password Confirmation and Anti-Bot Protection")
-    @Description("Input non-matching passwords in pass/conf.pass field and validate functionality, try to register and check if Anti-Bot security is working.")
-    @Test(description = "Matching passwords validation and Anti-Bot Protection.",
+    @Story("Account creation Validation")
+    @Description("Input non-matching passwords in pass/conf.pass field and validate functionality, try to register and check if Account was Created")
+    @Test(description = "Matching passwords validation and Account Creation.",
             priority = 3)
     public void matchingPasswordAndAntiBotTests() {
         registrationPageSteps
@@ -80,8 +83,9 @@ public class RegistrationTests extends ConfigTests {
                 .inputPassword(VALID_PASSWORD)
                 .clearInputField(registerPage.confirmationPasswordInputField)
                 .inputConfirmationPassword(VALID_PASSWORD)
-                .clickOnSubmitBtn()
-                .validateRobotActions();
+                .clickOnSubmitBtn();
+
+        homePageSteps.validateIfAccountWasCreated();
     }
 
     @AfterTest

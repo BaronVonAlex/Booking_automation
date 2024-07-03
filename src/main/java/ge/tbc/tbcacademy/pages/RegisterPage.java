@@ -13,6 +13,5 @@ public class RegisterPage {
             passwordInputField = $("#new_password"),
             confirmationPasswordInputField = $("#confirmed_password"),
             passwordErrorMessage = $("#new_password-note"),
-            confirmPasswordErrorMessage = $("#confirmed_password-note"),
-            areYouRobotText = $x("//h3[text()='Are you a robot?']");
+            confirmPasswordErrorMessage = $("#confirmed_password-note");
 }

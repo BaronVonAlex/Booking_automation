@@ -5,7 +5,6 @@ import com.codeborne.selenide.Selenide;
 import ge.tbc.tbcacademy.booking.config.ConfigTests;
 import ge.tbc.tbcacademy.data.constants.FilterConstants;
 import ge.tbc.tbcacademy.steps.FilterAndSortSteps;
-import ge.tbc.tbcacademy.steps.StaysPageSteps;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
 import org.testng.Assert;
@@ -14,7 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
 @Epic("Functional Tests")
 public class FilterAndSortTests extends ConfigTests {

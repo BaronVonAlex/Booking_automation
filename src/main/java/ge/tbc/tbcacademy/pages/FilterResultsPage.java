@@ -13,7 +13,7 @@ public class FilterResultsPage {
             searchResultPage = $("#b2searchresultsPage"),
             elementsConstraint = searchResultPage.$("#bodyconstraint "),
             noOffersFound = $x("//div//*[contains(text(),'No properties')]"),
-    loadMoreBtn=elementsConstraint.$(withTextCaseInsensitive("Load more")).ancestor("button"),
+            loadMoreBtn = elementsConstraint.$(withTextCaseInsensitive("Load more")).ancestor("button"),
 
     sortDropdownBtn = searchResultPage.$("[data-testid=\"sorters-dropdown-trigger\"]"),//aria-expanded="true"
             sortDropdownOptions = searchResultPage.$("[data-testid=\"sorters-dropdown\"]"),

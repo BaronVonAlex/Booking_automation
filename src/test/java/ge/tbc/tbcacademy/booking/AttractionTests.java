@@ -13,7 +13,7 @@ public class AttractionTests extends ConfigTests {
     @Story("Search for attractions in a specific destination")
     @Description("Test to search for attractions in Barcelona and verify that all results are at the same location.")
     @Severity(SeverityLevel.MINOR)
-    public void attractionsTest(){
+    public void attractionsTest() {
         attractionSteps
                 .openBookingWebPage()
                 .closeSignInPopUp();
@@ -26,6 +26,5 @@ public class AttractionTests extends ConfigTests {
                 .checkPageIsLoaded()
                 .checkResultsAreReady()
                 .allAttractionsShouldContainDest("Barcelona");
-
     }
 }

@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.util.Random;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static ge.tbc.tbcacademy.data.constants.SearchConstants.*;
 
 @Epic("Functional Tests")
 public class SearchTests extends ConfigTests {
@@ -53,7 +54,7 @@ public class SearchTests extends ConfigTests {
                 .getNumberOfAdults();
 
         softAssert.assertEquals(currentNumberOfAdults, adults,
-                "Number Of adult Occupants doesn't correspond to selected amount");
+                ADULT_OCCUPANT_ERR_MSG);
         staysSteps.submitOccupancyConfigurations();
 
     }
@@ -72,7 +73,7 @@ public class SearchTests extends ConfigTests {
                     .chooseChildAge(age);
         }
         int currentNumberOfChildren = staysSteps.getChildrenCount();
-        Assert.assertEquals(currentNumberOfChildren, children, "Number Of Children Doesn't correspond To Selected amount");
+        Assert.assertEquals(currentNumberOfChildren, children, CHILDREN_NUMBER_ERR_MSG);
         staysSteps.submitOccupancyConfigurations();
 
     }
@@ -111,7 +112,7 @@ public class SearchTests extends ConfigTests {
         staysSteps.openOccupancyConfiguration()
                 .checkOccupancyConfigurationIsOpen()
                 .setRoomsTo(n);
-        Assert.assertEquals(staysSteps.getRoomCount(), n, "Rooms Dont Match");
+        Assert.assertEquals(staysSteps.getRoomCount(), n, ROOMS_MISMATCH_ERR_MSG);
         staysSteps.submitOccupancyConfigurations();
     }
 
