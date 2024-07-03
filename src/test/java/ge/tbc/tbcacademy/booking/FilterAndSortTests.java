@@ -2,6 +2,7 @@ package ge.tbc.tbcacademy.booking;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import ge.tbc.tbcacademy.booking.config.ConfigTests;
 import ge.tbc.tbcacademy.data.constants.FilterConstants;
 import ge.tbc.tbcacademy.steps.FilterAndSortSteps;
@@ -30,7 +31,8 @@ public class FilterAndSortTests extends ConfigTests {
 
     @BeforeMethod(description = "Open browser and go to navigated page")
     public void launchBrowser() {
-        open(URL);
+       filterAndSort.openWebPage(URL)
+               .closeSignInPopUp();
         Configuration.timeout = 5000;
         filterAndSort.closeSignInPopUp();
     }
@@ -191,7 +193,7 @@ public class FilterAndSortTests extends ConfigTests {
     @Story("On Offers page choose price range and make sure the offers are in this range")
     @Severity(SeverityLevel.NORMAL)
     @Description("Offers are appropriately sorted after choosing price range")
-    @Test(groups = "filters")
+    @Test(groups = "filters",priority = 2)
     public void filterByPriceRange() {
         filterAndSort
                 .pageHeaderIsLoaded()
@@ -210,7 +212,10 @@ public class FilterAndSortTests extends ConfigTests {
 
     @AfterMethod(alwaysRun = true, description = "close browser")
     public void teardown() {
-        Selenide.closeWindow();
+        if( WebDriverRunner.getWebDriver().getWindowHandles().size() > 1){
+
+            Selenide.closeWindow();
+        }
     }
 
 }

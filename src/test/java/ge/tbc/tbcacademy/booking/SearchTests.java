@@ -1,8 +1,10 @@
 package ge.tbc.tbcacademy.booking;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import ge.tbc.tbcacademy.booking.config.ConfigTests;
 import ge.tbc.tbcacademy.data.dataproviders.TripDataProvider;
+import ge.tbc.tbcacademy.pages.StaysPage;
 import ge.tbc.tbcacademy.steps.StaysPageSteps;
 import ge.tbc.tbcacademy.utils.Util;
 import io.qameta.allure.*;
@@ -23,6 +25,7 @@ import static ge.tbc.tbcacademy.data.constants.SearchConstants.*;
 public class SearchTests extends ConfigTests {
     StaysPageSteps staysSteps = new StaysPageSteps();
     SoftAssert softAssert = new SoftAssert();
+    StaysPage staysPage = new StaysPage();
 
     @BeforeMethod
     public void dismissPopups() {
@@ -38,6 +41,7 @@ public class SearchTests extends ConfigTests {
     public void chooseDestination(String dest) {
         staysSteps.focusOnDestinationInput()
                 .clickOnDestinationInput()
+                .clearInputField(staysPage.destinationInput)
                 .writeDestination(dest)
                 .selectDestinationFromDropdown(dest);
     }
@@ -68,7 +72,6 @@ public class SearchTests extends ConfigTests {
         staysSteps.openOccupancyConfiguration()
                 .checkOccupancyConfigurationIsOpen();
         for (int i = 0; i < children; i++) {
-            Random rand = new Random();
             staysSteps.addChild()
                     .chooseChildAge(age);
         }
@@ -116,6 +119,7 @@ public class SearchTests extends ConfigTests {
         staysSteps.submitOccupancyConfigurations();
     }
 
+
     @Description("on stays page enter parameters and searchfor stays")
     @Feature("Search bar functionality")
     @Story("On stays page enter location, date, and number of guests and search for results")
@@ -132,6 +136,7 @@ public class SearchTests extends ConfigTests {
 
         staysSteps
                 .clickOnDestinationInput()
+                .clearInputField(staysPage.destinationInput)
                 .writeDestination(dest)
                 .selectDestinationFromDropdown(dest)
                 .checkCalendarIsOpen()
@@ -158,6 +163,6 @@ public class SearchTests extends ConfigTests {
     @AfterMethod
     public void tearDown() {
         softAssert.assertAll();
-        closeWebDriver();
+        Selenide.clearBrowserCookies();
     }
 }

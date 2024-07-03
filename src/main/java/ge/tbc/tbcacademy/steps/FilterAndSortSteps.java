@@ -67,8 +67,6 @@ public class FilterAndSortSteps extends HelperSteps<FilterAndSortSteps> {
 
     @Step("Choose minimum price per day with slider {0}")
     public FilterAndSortSteps setMinPricePerDay(String minPrice) {
-//        System.out.println(resultsPage.minPricePerDay.getAttribute("step"));
-//        System.out.println(resultsPage.minPricePerDay.getValue());
         while (!resultsPage.minPricePerDay.getValue().equals(minPrice)) {
             System.out.println(resultsPage.minPricePerDay.getValue());
             actions().clickAndHold(resultsPage.minPriceSlider)
@@ -81,13 +79,20 @@ public class FilterAndSortSteps extends HelperSteps<FilterAndSortSteps> {
 
     @Step("Choose maximum price per day with slider {0}")
     public FilterAndSortSteps setMaxPricePerDay(String maxPrice) {
-//        System.out.println(resultsPage.maxPricePerDay.getAttribute("step"));
-//        System.out.println(resultsPage.maxPricePerDay.getValue());
+        int i=0;
+        String old = " ";
         while (!resultsPage.maxPricePerDay.getValue().equals(maxPrice)) {
             System.out.println(resultsPage.maxPricePerDay.getValue());
+            if(resultsPage.maxPricePerDay.getValue().equals(old)){
+                i++;
+            }
+            if(i > 10){
+                break;
+            }
             actions().clickAndHold(resultsPage.maxPriceSlider)
                     .moveByOffset(-10, 0).click().perform();
             actions().release().perform();
+            old = resultsPage.maxPricePerDay.getValue();
         }
 
         return this;

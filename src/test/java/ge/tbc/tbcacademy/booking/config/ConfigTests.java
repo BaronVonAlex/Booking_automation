@@ -105,6 +105,8 @@ public class ConfigTests {
             }
         }
         Configuration.assertionMode = SOFT;
+//        Configuration.holdBrowserOpen = true;
+
         WebDriverRunner.setWebDriver(driver);
     }
 
