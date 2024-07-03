@@ -2,12 +2,11 @@ package ge.tbc.tbcacademy.pages;
 
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class HomePage {
     public SelenideElement
-            welcomeUserPopupMsg = $("h2[id$='-title'] strong"),
+            welcomeUserPopupMsg = $x("//div[@role='dialog']"),
             dialogXBtn = $x("//div[@role='dialog']//button"),
             inputField = $x("//input[@id=':re:']"),
             dateInputField = $x("//button[@data-testid='date-display-field-start']"),
@@ -19,5 +18,7 @@ public class HomePage {
             signInBtnText = instantDiscountSignInBtn.$("span"),
             instantDiscountRegisterBtn = $x("//span[text()='Register']/ancestor::a"),
             registerBtnText = instantDiscountRegisterBtn.$("span"),
-            backgroundImage = $x("//img[@data-testid='herobanner-image']");
+            backgroundImage = $x("//img[@data-testid='herobanner-image']"),
+            userAccountBtn = $x("//div[@aria-label='Your account menu Your account Genius Level 1']"),
+            manageAccountBtn = $x("//span[text()='Manage account']");
 }

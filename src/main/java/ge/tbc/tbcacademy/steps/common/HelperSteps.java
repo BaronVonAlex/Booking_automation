@@ -2,7 +2,9 @@ package ge.tbc.tbcacademy.steps.common;
 
 import com.codeborne.selenide.SelenideElement;
 import ge.tbc.tbcacademy.pages.HomePage;
+import ge.tbc.tbcacademy.utils.Util;
 import io.qameta.allure.Step;
+import org.openqa.selenium.Keys;
 import org.testng.asserts.SoftAssert;
 
 import static com.codeborne.selenide.Condition.*;
@@ -90,6 +92,15 @@ public class HelperSteps<T> {
     @Step("Scroll to element with javascript {0}")
     public T scrollToElementUsingJavascript(SelenideElement element) {
         executeJavaScript(SMOOTH_SCROLL_TO_ELEMENT_SCRIPT, element);
+        return (T) this;
+    }
+    @Step("Clear Input Field before inputting Data {0}")
+    public T clearInputField(SelenideElement element) {
+        if (Util.isMacOS()){
+            element.sendKeys(Keys.chord(Keys.COMMAND, "a", Keys.DELETE));
+        }else {
+            element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        }
         return (T) this;
     }
 }

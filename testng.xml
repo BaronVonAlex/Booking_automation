@@ -1,10 +1,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Booking Suite">
+
+    <listeners>
+        <listener class-name="ge.tbc.tbcacademy.listeners.AllureScreenshotListener"/>
+    </listeners>
+
     <test name="Chrome Tests">
         <parameter name="browser" value="chrome"/>
         <packages>
             <package name="ge.tbc.tbcacademy.booking">
-                <exclude name="ge.tbc.tbcacademy.booking.FilterAndSortTests"></exclude>
+                <exclude name="ge.tbc.tbcacademy.booking.FilterAndSortTests"/>
             </package>
         </packages>
     </test>
@@ -13,7 +18,9 @@
         <parameter name="browser" value="firefox"/>
         <packages>
             <package name="ge.tbc.tbcacademy.booking">
-                <exclude name="ge.tbc.tbcacademy.booking.FilterAndSortTests"></exclude>
+                <exclude name="ge.tbc.tbcacademy.booking.FilterAndSortTests"/>
+                <exclude name="ge.tbc.tbcacademy.booking.RegistrationTests"/>
+                <exclude name="ge.tbc.tbcacademy.booking.SignInTests"/>
             </package>
         </packages>
     </test>
@@ -22,7 +29,9 @@
         <parameter name="browser" value="edge"/>
         <packages>
             <package name="ge.tbc.tbcacademy.booking">
-                <exclude name="ge.tbc.tbcacademy.booking.FilterAndSortTests"></exclude>
+                <exclude name="ge.tbc.tbcacademy.booking.FilterAndSortTests"/>
+                <exclude name="ge.tbc.tbcacademy.booking.RegistrationTests"/>
+                <exclude name="ge.tbc.tbcacademy.booking.SignInTests"/>
             </package>
         </packages>
     </test>
