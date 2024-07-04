@@ -12,6 +12,17 @@
                 <exclude name="ge.tbc.tbcacademy.booking.FilterAndSortTests"/>
             </package>
         </packages>
+        <classes>
+            <class name="ge.tbc.tbcacademy.booking.UITests"></class>
+            <class name="ge.tbc.tbcacademy.booking.LanguageTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.FlightsTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.AttractionTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.SignInTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.RegistrationTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.AccessibilityTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.SearchTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.FiltersFactory"></class>
+        </classes>
     </test>
 
     <test name="Firefox Tests">
@@ -23,6 +34,14 @@
                 <exclude name="ge.tbc.tbcacademy.booking.SignInTests"/>
             </package>
         </packages>
+        <classes>
+            <class name="ge.tbc.tbcacademy.booking.UITests"></class>
+            <class name="ge.tbc.tbcacademy.booking.LanguageTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.FlightsTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.AttractionTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.AccessibilityTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.SearchTests"></class>
+        </classes>
     </test>
 
     <test name="Edge Tests">
@@ -34,5 +53,13 @@
                 <exclude name="ge.tbc.tbcacademy.booking.SignInTests"/>
             </package>
         </packages>
+        <classes>
+            <class name="ge.tbc.tbcacademy.booking.UITests"></class>
+            <class name="ge.tbc.tbcacademy.booking.LanguageTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.FlightsTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.AttractionTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.AccessibilityTests"></class>
+            <class name="ge.tbc.tbcacademy.booking.SearchTests"></class>
+        </classes>
     </test>
 </suite>
