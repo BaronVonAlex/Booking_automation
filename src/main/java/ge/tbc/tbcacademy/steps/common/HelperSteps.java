@@ -2,6 +2,7 @@ package ge.tbc.tbcacademy.steps.common;
 
 import com.codeborne.selenide.SelenideElement;
 import ge.tbc.tbcacademy.pages.HomePage;
+import ge.tbc.tbcacademy.pages.common.HeaderSection;
 import ge.tbc.tbcacademy.utils.Util;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
@@ -18,6 +19,7 @@ import static ge.tbc.tbcacademy.utils.Util.getPseudoElementStyle;
 public class HelperSteps<T> {
     SoftAssert softAssert = new SoftAssert();
     HomePage homePage = new HomePage();
+    HeaderSection header = new HeaderSection();
 
     @Step("Open Booking.com Webpage.")
     public T openBookingWebPage() {
@@ -94,13 +96,22 @@ public class HelperSteps<T> {
         executeJavaScript(SMOOTH_SCROLL_TO_ELEMENT_SCRIPT, element);
         return (T) this;
     }
+
     @Step("Clear Input Field before inputting Data {0}")
     public T clearInputField(SelenideElement element) {
-        if (Util.isMacOS()){
+        if (Util.isMacOS()) {
             element.sendKeys(Keys.chord(Keys.COMMAND, "a", Keys.DELETE));
-        }else {
+        } else {
             element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         }
+        return (T) this;
+    }
+
+    @Step("Buttons that load very slowly are loaded")
+    public T waitForPageToLoad() {
+        header.registerBtn.should(appear);
+        header.loginBtn.should(appear);
+
         return (T) this;
     }
 }

@@ -1,17 +1,21 @@
 package ge.tbc.tbcacademy.steps;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.ElementShould;
 import ge.tbc.tbcacademy.data.constants.SearchConstants;
 import ge.tbc.tbcacademy.pages.StaysPage;
 import ge.tbc.tbcacademy.steps.common.HelperSteps;
 import ge.tbc.tbcacademy.utils.Util;
 import io.qameta.allure.Step;
+import static com.codeborne.selenide.Selenide.*;
 
 import java.time.LocalDate;
 import java.util.NoSuchElementException;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.withText;
+import static com.codeborne.selenide.Selectors.withTextCaseInsensitive;
 
 public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
     StaysPage staysPage = new StaysPage();
@@ -191,7 +195,7 @@ public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
     @Step("Press On Done in Occupancy configuration")
     public StaysPageSteps submitOccupancyConfigurations() {
         if (staysPage.occupancyConfigDoneBtn.exists()) {
-            staysPage.occupancyConfigDoneBtn.scrollTo().click();
+            staysPage.occupancyConfigDoneBtn.scrollIntoView(false).click();
         }
         return this;
     }
@@ -243,12 +247,11 @@ public class StaysPageSteps extends HelperSteps<StaysPageSteps> {
 
     @Step("Check that all results are on selected location {0}")
     public StaysPageSteps offerLocationCheck(String dest) {
-        staysPage.offerLocations.shouldHave(CollectionCondition.allMatch(
-                "All are located to the same city",
-                e -> {
-                    return e.getText().contains(dest);
-                }
-        ));
+        int size = staysPage.offerLocations.size();
+        for( int i=0; i<size; i++){
+            System.out.println(staysPage.offerLocations.get(i).scrollTo().shouldHave(text(dest)).getText());
+//            staysPage.offerLocations.get(i).shouldHave(text(dest));
+        }
         return this;
     }
 

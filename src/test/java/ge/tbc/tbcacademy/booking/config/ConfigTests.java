@@ -16,6 +16,7 @@ import org.testng.annotations.*;
 
 import static com.codeborne.selenide.AssertionMode.SOFT;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.Selenide.closeWindow;
 import static ge.tbc.tbcacademy.data.constants.Constants.INVALID_BROWSER_PARAMETER_MESSAGE;
 
 @Listeners({SoftAsserts.class, AllureScreenshotListener.class})
@@ -113,5 +114,7 @@ public class ConfigTests {
     @AfterClass(alwaysRun = true)
     public void tearDown() {
         closeWebDriver();
+//        driver.quit();
     }
+
 }

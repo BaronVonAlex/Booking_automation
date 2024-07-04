@@ -2,6 +2,7 @@ package ge.tbc.tbcacademy.booking;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import ge.tbc.tbcacademy.booking.config.ConfigTests;
 import ge.tbc.tbcacademy.data.dataproviders.TripDataProvider;
 import ge.tbc.tbcacademy.pages.StaysPage;
@@ -18,7 +19,6 @@ import org.testng.asserts.SoftAssert;
 import java.time.LocalDate;
 import java.util.Random;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static ge.tbc.tbcacademy.data.constants.SearchConstants.*;
 
 @Epic("Functional Tests")
@@ -29,7 +29,8 @@ public class SearchTests extends ConfigTests {
 
     @BeforeMethod
     public void dismissPopups() {
-        staysSteps.openBookingWebPage()
+        staysSteps
+                .openBookingWebPage()
                 .closeSignInPopUp();
     }
 
@@ -39,7 +40,9 @@ public class SearchTests extends ConfigTests {
     @Severity(SeverityLevel.CRITICAL)
     @Test(groups = "Search Bar Components", dataProvider = "destinationProvider", dataProviderClass = TripDataProvider.class)
     public void chooseDestination(String dest) {
-        staysSteps.focusOnDestinationInput()
+        staysSteps
+                .waitForPageToLoad()
+                .focusOnDestinationInput()
                 .clickOnDestinationInput()
                 .clearInputField(staysPage.destinationInput)
                 .writeDestination(dest)
@@ -52,7 +55,9 @@ public class SearchTests extends ConfigTests {
     @Severity(SeverityLevel.CRITICAL)
     @Test(groups = "Search Bar Components", dataProvider = "adultsCountProvider", dataProviderClass = TripDataProvider.class)
     public void addingAdultsTests(int adults) {
-        int currentNumberOfAdults = staysSteps.openOccupancyConfiguration()
+        int currentNumberOfAdults = staysSteps
+                .waitForPageToLoad()
+                .openOccupancyConfiguration()
                 .checkOccupancyConfigurationIsOpen()
                 .setNumberOfAdultsTo(adults)
                 .getNumberOfAdults();
@@ -69,7 +74,9 @@ public class SearchTests extends ConfigTests {
     @Severity(SeverityLevel.CRITICAL)
     @Test(groups = "Search Bar Components", dataProvider = "childCountProvider", dataProviderClass = TripDataProvider.class)
     public void addChildrenTest(int children, int age) {
-        staysSteps.openOccupancyConfiguration()
+        staysSteps
+                .waitForPageToLoad()
+                .openOccupancyConfiguration()
                 .checkOccupancyConfigurationIsOpen();
         for (int i = 0; i < children; i++) {
             staysSteps.addChild()
@@ -95,7 +102,9 @@ public class SearchTests extends ConfigTests {
         String endMonth = Util.getLongMonthFromDate(endDate);
         String endYear = Util.getYear(endDate);
 
-        staysSteps.clickOnCalendar()
+        staysSteps
+                .waitForPageToLoad()
+                .clickOnCalendar()
                 .checkCalendarIsOpen()
                 .chooseStartDate(startDay, startMonth, startYear)
                 .chooseEndDate(endDay, endMonth, endYear)
@@ -112,7 +121,9 @@ public class SearchTests extends ConfigTests {
     @Test(groups = "Search Bar Components")
     public void chooseRoomNumber() {
         int n = 4;
-        staysSteps.openOccupancyConfiguration()
+        staysSteps
+                .waitForPageToLoad()
+                .openOccupancyConfiguration()
                 .checkOccupancyConfigurationIsOpen()
                 .setRoomsTo(n);
         Assert.assertEquals(staysSteps.getRoomCount(), n, ROOMS_MISMATCH_ERR_MSG);
@@ -135,6 +146,7 @@ public class SearchTests extends ConfigTests {
         String endYear = Util.getYear(endDate);
 
         staysSteps
+                .waitForPageToLoad()
                 .clickOnDestinationInput()
                 .clearInputField(staysPage.destinationInput)
                 .writeDestination(dest)
@@ -163,6 +175,9 @@ public class SearchTests extends ConfigTests {
     @AfterMethod
     public void tearDown() {
         softAssert.assertAll();
+        if( WebDriverRunner.getWebDriver().getWindowHandles().size() > 1){
+            Selenide.closeWindow();
+        }
         Selenide.clearBrowserCookies();
     }
 }
