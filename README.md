@@ -48,7 +48,7 @@ To run the tests locally, follow these steps:
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/Alinatkabladze/Bootcamp9_Team2.git
+    git clone https://github.com/BaronVonAlex/Booking_automation.git
     ```
 
 2. **Navigate to the Project Directory**:
