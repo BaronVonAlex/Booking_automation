@@ -1,4 +1,4 @@
-# Bootcamp9_Team2
+# Booking.com QA Automation
 This project automates tests for the website Booking.com using Selenide.
 
 ## Description
